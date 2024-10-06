@@ -1,0 +1,27 @@
+.hero-shot {
+    display: flex; /* Usar Flexbox para centrar el contenido */
+    flex-direction: column; /* Coloca el contenido en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center;
+    color: white;
+    height: 400px; /* Altura fija */
+    overflow: hidden; /* Evita que el contenido sobresalga */
+}
+
+.hero-shot img {
+    width: auto; /* Ajusta el ancho automáticamente */
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    height: 100%; /* Ajusta la altura a 100% del contenedor */
+    object-fit: cover; /* Mantiene la proporción y cubre el área del contenedor */
+}
+
+.hero-shot h1 {
+    margin: 0; /* Elimina márgenes por defecto */
+    position: absolute; /* Permite que el título se superponga */
+    top: 20%; /* Ajusta según necesites */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el texto */
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
