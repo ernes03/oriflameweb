@@ -7,16 +7,19 @@ import reportWebVitals from './reportWebVitals';
 import HeroShot from './HeroShot';
 import Footer from './Footer';
 import ContactForm from './ContactForm';
+import Carrusel from './Carrusel';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <NavBar/>
-    <HeroShot/>
+      {/*<HeroShot/> */}
     {/* <App /> */}
+    <Carrusel></Carrusel>
     <ContactForm/>
    <Footer/>
   </React.StrictMode>
+ 
     
 );
 
