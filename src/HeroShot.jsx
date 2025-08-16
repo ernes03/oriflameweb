@@ -1,85 +1,188 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import data from './data/heroshot.json';
-import './HeroShot.css';
-import HeroImage1 from './media/HeroImage1.jpg';
-import HeroImage2 from './media/HeroImage2.jpg';
-import HeroImage3 from './media/HeroImage3.jpg';
+import React, { useEffect, useState } from "react";
+import slidesData from "./data/heroshot.json";
+import "./HeroShot.css";
 
-const imageMap = {
-  'HeroImage1.jpg': HeroImage1,
-  'HeroImage2.jpg': HeroImage2,
-  'HeroImage3.jpg': HeroImage3,
-};
+// Base pública (CRA)
+const PUBLIC_BASE = (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL) || "";
 
-const SLIDE_INTERVAL_MS = 10000;
-const FADE_DURATION_MS = 2500;
+// Normaliza y asegura "/" inicial respetando PUBLIC_URL
+function withBase(p) {
+  const base = String(PUBLIC_BASE || "").replace(/\/+$/, "");
+  const path = `/${String(p || "").replace(/^\/+/, "")}`;
+  return `${base}${path}`.replace(/\/+/g, "/");
+}
 
-const HeroShot = () => {
-  const slides = useMemo(() => data.slides || [], []);
+// Mapa de assets empaquetados desde src/media (Webpack/CRA)
+const mediaMap = (() => {
+  try {
+    const ctx = require.context("./media", true, /\.(png|jpe?g|webp|svg)$/i);
+    const map = {};
+    ctx.keys().forEach((key) => {
+      const url = ctx(key);
+      const name = key.split("/").pop();          // "HeroImage2.jpg"
+      const rel = `media/${key.replace(/^.\//, "")}`; // "media/sub/Hero.jpg"
+      if (name && !map[name]) map[name] = url;    // por nombre simple
+      if (!map[rel]) map[rel] = url;              // por ruta relativa con "media/"
+    });
+    return map;
+  } catch {
+    return {};
+  }
+})();
+
+// Genera candidatos válidos para <img src=...>
+function resolveImageCandidates(name) {
+  if (!name) return [];
+  // URL absoluta
+  if (/^https?:\/\//i.test(name)) return [name];
+
+  const out = [];
+
+  // 1) Empaquetadas desde src/media
+  if (mediaMap[name]) out.push(mediaMap[name]);            // "HeroImage2.jpg"
+  if (mediaMap[`media/${name}`]) out.push(mediaMap[`media/${name}`]); // "media/HeroImage2.jpg"
+  if (name.includes("/") && mediaMap[name]) out.push(mediaMap[name]); // "media/sub/Hero.jpg"
+
+  // 2) Rutas absolutas o relativas -> a públicas
+  if (name.startsWith("/")) {
+    out.push(withBase(name));
+  } else if (name.includes("/")) {
+    out.push(withBase(name));               // p.ej. "media/HeroImage2.jpg"
+  } else {
+    out.push(withBase(`media/${name}`));    // public/media
+    out.push(withBase(`images/${name}`));   // public/images
+    out.push(withBase(name));               // raíz pública
+  }
+
+  // Únicos y en orden
+  return Array.from(new Set(out));
+}
+
+function HeroShot() {
+  const slides = slidesData.slides || [];
   const [index, setIndex] = useState(0);
-  const [fadeIn, setFadeIn] = useState(true);
+  const [visible, setVisible] = useState(true);
+
+  // Fallback entre candidatos (media -> public/media -> public/images -> raíz)
+  const [imgAttempt, setImgAttempt] = useState(0);
+  useEffect(() => setImgAttempt(0), [index]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setFadeIn(false);
-      
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % slides.length);
-        
-        setTimeout(() => {
-          setFadeIn(true);
-        }, 100); // Aumenté el delay para evitar overlap
-      }, FADE_DURATION_MS);
-      
-    }, SLIDE_INTERVAL_MS);
-    
-    return () => clearInterval(timer);
+    if (slides.length <= 1) return;
+
+    const STAY_MS = 7000; // antes: 3500 -> más tiempo visible
+    const FADE_MS = 3000; // antes: 2500 -> debe coincidir con CSS (3s)
+
+    let t1, t2;
+    const loop = () => {
+      t1 = setTimeout(() => {
+        setVisible(false); // fade out
+        t2 = setTimeout(() => {
+          setIndex((i) => (i + 1) % slides.length); // siguiente slide
+          setVisible(true); // fade in
+          loop();
+        }, FADE_MS);
+      }, STAY_MS);
+    };
+
+    loop();
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, [slides.length]);
 
-  if (slides.length === 0) return null;
+  const slide = slides[index] || {};
 
-  const current = slides[index];
-  // Maneja tanto URLs externas como imágenes locales
-  const imageSrc = current.image.startsWith('http') 
-    ? current.image 
-    : (imageMap[current.image] ?? HeroImage1);
-  const contentStyle = { '--fade-duration': `${FADE_DURATION_MS}ms` };
-  const isReversed = Boolean(current.reverse);
-  const textAlign = current.textAlign === 'left' ? 'left' : current.textAlign === 'right' ? 'right' : undefined;
-  const stackClass = current.stack === 'image-top' ? 'is-imageTop' : '';
-  const spacedClass = current.spaced === false ? 'is-close' : '';
+  const bgClass =
+    slide.background?.enabled
+      ? slide.background.type === "image"
+        ? "hero-shot--bg-image"
+        : slide.background.type === "color"
+        ? "hero-shot--bg-color"
+        : ""
+      : "";
+
+  const bgStyle =
+    slide.background?.enabled && slide.background.type === "image"
+      ? {
+          "--hero-bg-image": `url('${slide.background.imageUrl}')`,
+          "--hero-bg-base": slide.background.baseColor || "#0f264d",
+          ...(typeof slide.background.overlay === "string"
+            ? { "--hero-bg-overlay": slide.background.overlay }
+            : {})
+        }
+      : slide.background?.enabled && slide.background.type === "color"
+      ? {
+          "--hero-bg-color": slide.background.color,
+          "--hero-bg-base": slide.background.color
+        }
+      : {};
+
+  const contentClasses = [
+    "hero-shot__content",
+    slide.reverse ? "is-reversed" : "",
+    slide.imageTop ? "is-imageTop" : "",
+    slide.close ? "is-close" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const imageName = slide.image || slide.image2;
+  const candidates = resolveImageCandidates(imageName);
+  const imgSrc = candidates[imgAttempt];
 
   return (
-    <section className="hero-shot" aria-label="Hero principal">
+    <section
+      className={`hero-shot ${bgClass} fade ${visible ? "in" : "out"}`}
+      style={bgStyle}
+    >
       <div className="hero-shot__stage">
-        <div
-        className={`hero-shot__content ${isReversed ? 'is-reversed' : ''} ${stackClass} ${spacedClass} fade ${fadeIn ? 'in' : 'out'}`}
-          style={contentStyle}
-        >
-          <div className="hero-shot__messages" style={textAlign ? { textAlign } : undefined}>
+        <div className={contentClasses}>
+          <div className="hero-shot__messages">
             <div className="hero-shot__text-container">
-              <h1 className="hero-shot__headline">{current.headline}</h1>
-              <p className="hero-shot__subheadline">{current.subheadline}</p>
-              <ul className="hero-shot__bullets">
-                {current.messages.map((message, messageIndex) => (
-                  <li key={messageIndex}>{message}</li>
-                ))}
-              </ul>
+              <div className="hero-shot__title-section">
+                {slide.headline && (
+                  <h2 className="hero-shot__headline">{slide.headline}</h2>
+                )}
+                {slide.subheadline && (
+                  <p className="hero-shot__subheadline">{slide.subheadline}</p>
+                )}
+              </div>
+
+              {Array.isArray(slide.messages) && slide.messages.length > 0 && (
+                <ul className="hero-shot__bullets">
+                  {slide.messages.map((m, i) => (
+                    <li key={i}>{m}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
 
-          <div className="hero-shot__imageWrapper">
-            <img
-              className="hero-shot__image"
-              src={imageSrc}
-              alt={current.imageAlt}
-            />
-          </div>
+          {imgSrc && (
+            <div className="hero-shot__imageWrapper">
+              <img
+                className="hero-shot__image"
+                src={imgSrc}
+                alt={slide.imageAlt || ""}
+                loading="lazy"
+                onError={() => {
+                  if (imgAttempt < candidates.length - 1) {
+                    setImgAttempt((n) => n + 1);
+                  } else {
+                    // eslint-disable-next-line no-console
+                    console.error("[HeroShot] no se pudo cargar:", imageName, candidates);
+                  }
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default HeroShot;
 

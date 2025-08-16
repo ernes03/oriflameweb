@@ -4,14 +4,20 @@
       "headline": "Construye tu propio camino con Oriflame",
       "subheadline": "Sé parte de una comunidad que impulsa bienestar y belleza",
       "image2": "HeroImage1.jpg",
-      "image" : "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
       "imageAlt": "Mujer sonriente de medio cuerpo a la derecha",
       "spaced": false,
       "messages": [
         "Genera ingresos compartiendo productos de belleza",
         "Ingredientes de origen natural y calidad europea",
         "Capacitación y apoyo constante de la comunidad"
-      ]
+      ],
+      "background": {
+        "enabled": true,
+        "type": "image",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
+        "overlay": "linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45))"
+      }
     },
     {
       "headline": "Productos que inspiran confianza",
@@ -24,7 +30,12 @@
         "Fórmulas con ingredientes de origen natural",
         "Resultados visibles y comprobados",
         "Recomendados por una comunidad global"
-      ]
+      ],
+      "background": {
+        "enabled": true,
+        "type": "color",
+        "color": "#0f264d"
+      }
     },
     {
       "headline": "Impulsa tu éxito",
@@ -36,7 +47,10 @@
         "Formación continua y mentoría",
         "Reconocimientos y metas claras",
         "Crecimiento personal y profesional"
-      ]
+      ],
+      "background": {
+        "enabled": false
+      }
     }
   ]
 }
