@@ -1,0 +1,11 @@
+{
+  "title": "Contáctanos",
+  "description": "¿Tienes preguntas? Envíanos un mensaje y te responderemos pronto.",
+  "placeholders": {
+    "name": "Tu nombre",
+    "email": "Tu correo",
+    "message": "Cuéntanos cómo podemos ayudarte"
+  },
+  "cta": "Enviar"
+}
+

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import './ContactForm.css';
+import data from './data/contactForm.json';
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -33,8 +34,11 @@ function ContactForm() {
   };
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <h2>Contáctanos</h2>
+    <section className="contact-section" aria-labelledby="contact-title">
+      <div className="contact-container">
+      <form className="contact-form" onSubmit={handleSubmit}>
+      <h2 id="contact-title">{data.title}</h2>
+      <p className="contact-desc">{data.description}</p>
       <label>Nombre</label>
       <input
         type="text"
@@ -42,6 +46,7 @@ function ContactForm() {
         value={formData.name}
         onChange={handleChange}
         required
+        placeholder={data.placeholders.name}
       />
 
       <label>Email</label>
@@ -51,6 +56,7 @@ function ContactForm() {
         value={formData.email}
         onChange={handleChange}
         required
+        placeholder={data.placeholders.email}
       />
 
       <label>Mensaje</label>
@@ -59,11 +65,14 @@ function ContactForm() {
         value={formData.message}
         onChange={handleChange}
         required
+        placeholder={data.placeholders.message}
       ></textarea>
 
-      <button type="submit">Enviar</button>
+      <button type="submit">{data.cta}</button>
       <p className="status-message">{statusMessage}</p>
     </form>
+    </div>
+    </section>
   );
 }
 

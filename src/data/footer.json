@@ -1,0 +1,10 @@
+{
+  "links": [
+    { "label": "Acerca de", "href": "#acerca" },
+    { "label": "Servicios", "href": "#servicios" },
+    { "label": "Contacto", "href": "#contacto" }
+  ],
+  "copyright": "Oriflame Emma Mora",
+  "note": "Todos los derechos reservados"
+}
+

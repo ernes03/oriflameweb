@@ -1,27 +1,313 @@
 .hero-shot {
-    display: flex; /* Usar Flexbox para centrar el contenido */
-    flex-direction: column; /* Coloca el contenido en columna */
-    align-items: center; /* Centra horizontalmente */
-    justify-content: center; /* Centra verticalmente */
-    text-align: center;
-    color: white;
-    height: 400px; /* Altura fija */
-    overflow: hidden; /* Evita que el contenido sobresalga */
+  width: 100%;
+  background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #1a3a5c 100%);
+  color: #ffffff;
+  --hero-height: 500px; /* Aumentamos altura para mejor visibilidad */
+  --hero-image-max-width: 400px; /* Aumentamos ancho máximo de la imagen */
+  --hero-gap: 40px; /* Distancia uniforme entre columnas y elementos */
+  --hero-message-gap: 32px; /* Distancia entre secciones principales */
+  --hero-title-gap: 16px; /* Distancia específica entre headline y subheadline */
+  position: relative;
+  z-index: 1;
 }
 
-.hero-shot img {
-    width: auto; /* Ajusta el ancho automáticamente */
-    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
-    height: 100%; /* Ajusta la altura a 100% del contenedor */
-    object-fit: cover; /* Mantiene la proporción y cubre el área del contenedor */
+.hero-shot__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-message-gap);
+  padding-left: 20px;
 }
 
-.hero-shot h1 {
-    margin: 0; /* Elimina márgenes por defecto */
-    position: absolute; /* Permite que el título se superponga */
-    top: 20%; /* Ajusta según necesites */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centra el texto */
-    font-size: 2.5em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+.hero-shot__title-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-title-gap);
+  margin-bottom: 24px;
+}
+
+.hero-shot__content-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-shot__stage {
+  position: relative;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-shot__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--hero-gap);
+  align-items: center; /* Centra verticalmente el contenido */
+  padding: 60px 20px;
+  min-height: var(--hero-height);
+  transition: height 0.3s ease-in-out;
+}
+
+/* Se unifica el gap para todas las diapositivas */
+
+.hero-shot__content.is-reversed {
+  grid-template-columns: 1fr 1fr;
+}
+.hero-shot__content.is-imageTop {
+  grid-template-columns: 1fr;
+}
+
+.hero-shot__content.is-close {
+  gap: 20px; /* Reduce el gap para acercar texto e imagen */
+}
+
+.hero-shot__content.is-imageTop .hero-shot__imageWrapper {
+  justify-content: center;
+}
+
+.hero-shot__content.is-imageTop .hero-shot__messages {
+  text-align: left;
+}
+
+.hero-shot__content.is-reversed .hero-shot__messages {
+  order: 2;
+}
+
+.hero-shot__content.is-reversed .hero-shot__imageWrapper {
+  order: 1;
+  justify-content: center;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.fade.out {
+  opacity: 0;
+}
+
+/* Se vuelve al contenedor único con fade simple */
+
+.hero-shot__messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-message-gap);
+  height: 100%;
+  justify-content: center; /* Centra verticalmente el contenido de texto */
+  text-align: left; /* Alineación por defecto */
+}
+
+.hero-shot__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-message-gap);
+  padding-left: 100px;
+}
+
+.hero-shot__headline {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
+}
+
+.hero-shot__subheadline {
+  margin: 0;
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: #dce6f7;
+}
+
+.hero-shot__bullets {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.hero-shot__bullets li {
+  margin: 6px 0;
+}
+
+.hero-shot__imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Igual altura que la columna de texto */
+}
+
+.hero-shot__image {
+  width: 100%;
+  max-width: var(--hero-image-max-width);
+  height: auto; /* Mantiene proporción automáticamente */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 1020px) {
+  .hero-shot {
+    --hero-height: auto;
+    --hero-image-max-width: 350px;
+    --hero-gap: 30px;
+    --hero-title-gap: 14px;
+  }
+
+  .hero-shot__content {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .hero-shot__content.is-reversed {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-shot__content.is-close {
+    gap: 20px;
+  }
+
+  .hero-shot__imageWrapper {
+    justify-content: center;
+    height: auto;
+    order: -1; /* Imagen siempre arriba en móvil */
+  }
+
+  .hero-shot__messages {
+    text-align: center !important; /* Centra el texto en móvil */
+  }
+
+  .hero-shot__text-container {
+    padding-left: 0; /* Quita el padding izquierdo en móvil */
+  }
+
+  .hero-shot__bullets {
+    list-style: none; /* Quita las viñetas */
+    padding-left: 0; /* Quita el padding izquierdo */
+  }
+}
+
+/* Tablets medianos */
+@media (max-width: 768px) {
+  .hero-shot {
+    --hero-gap: 25px;
+    --hero-message-gap: 14px;
+    --hero-image-max-width: 300px;
+    --hero-title-gap: 12px;
+  }
+
+  .hero-shot__content {
+    padding: 30px 16px;
+    gap: 25px;
+  }
+
+  .hero-shot__content.is-close {
+    gap: 15px;
+  }
+
+  .hero-shot__headline {
+    font-size: clamp(24px, 5vw, 32px);
+  }
+
+  .hero-shot__subheadline {
+    font-size: clamp(14px, 3vw, 18px);
+  }
+
+  .hero-shot__bullets {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .hero-shot {
+    --hero-gap: 20px;
+    --hero-message-gap: 12px;
+    --hero-image-max-width: 280px;
+    --hero-title-gap: 10px;
+  }
+
+  .hero-shot__content {
+    padding: 25px 14px;
+    gap: 20px;
+  }
+
+  .hero-shot__content.is-close {
+    gap: 12px;
+  }
+
+  .hero-shot__headline {
+    font-size: clamp(20px, 5.5vw, 28px);
+  }
+
+  .hero-shot__subheadline {
+    font-size: clamp(13px, 3.5vw, 16px);
+  }
+
+  .hero-shot__bullets {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+/* Móviles extra pequeños */
+@media (max-width: 460px) {
+  .hero-shot__stage {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    max-width: none;
+  }
+
+  .hero-shot__content {
+    padding: 15px 10px;
+    gap: 15px;
+    margin: 0;
+    width: 100%;
+  }
+
+  .hero-shot__content.is-close {
+    gap: 8px;
+  }
+
+  .hero-shot__text-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .hero-shot__imageWrapper {
+    margin: 0;
+    width: 100%;
+  }
+
+  .hero-shot__headline {
+    font-size: clamp(18px, 6vw, 24px);
+    margin: 0;
+  }
+
+  .hero-shot__subheadline {
+    font-size: clamp(12px, 4vw, 16px);
+    margin: 0;
+  }
+
+  .hero-shot__bullets {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Height fijo para resoluciones altas */
+@media (min-width: 1021px) {
+  .hero-shot__content {
+    height: 500px;
+    max-height: 500px;
+    min-height: 500px;
+  }
 }
