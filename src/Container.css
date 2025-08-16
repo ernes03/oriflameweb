@@ -1,0 +1,24 @@
+.app-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Media queries para consistencia con el HeroShot */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 460px) {
+  .app-container {
+    padding: 0;
+  }
+}

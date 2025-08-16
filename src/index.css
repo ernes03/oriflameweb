@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Asegurar que no hay padding/margin en resoluciones pequeñas */
+@media (max-width: 460px) {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
+  }
+  
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    max-width: none;
+  }
+  
+  .app-container {
+    width: 100vw;
+    max-width: none;
+  }
+}

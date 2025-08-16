@@ -7,14 +7,14 @@ const Carrusel = () => {
   return (
     
       
-      <div>
+      <div style={{ position: 'relative', zIndex: 0 }}>
 
-        <section class='divCarrusel'>
-            <img src="../evangelio1.jpg"></img>
-            <img src="../evangelio2.jpg"></img>
-            <img src="../evangelio3.jpg"></img>
-            <img src="../evangelio4.jpg"></img>
-            <img src="../evangelio5.jpg"></img>
+        <section className='divCarrusel'>
+            <img src={process.env.PUBLIC_URL + '/evangelio1.jpg'} alt="Producto 1" />
+            <img src={process.env.PUBLIC_URL + '/evangelio2.jpg'} alt="Producto 2" />
+            <img src={process.env.PUBLIC_URL + '/evangelio3.jpg'} alt="Producto 3" />
+            <img src={process.env.PUBLIC_URL + '/evangelio4.jpg'} alt="Producto 4" />
+            <img src={process.env.PUBLIC_URL + '/evangelio5.jpg'} alt="Producto 5" />
 
         </section>
          

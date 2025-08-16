@@ -1,33 +1,37 @@
-section{
+.divCarrusel{
     display: flex;
-    width: 600px;
+    width: 100%;
+    max-width: 1600px;
     height: 430px;
-
-
-    
-
-  
+    margin: 24px auto;
 }
 
-section img{
-    width: 0px;
+.divCarrusel img{
+    width: 0;
     flex-grow: 1;
     object-fit: cover;
     opacity: .8;
     transition: .5s ease;
 }
 
-section img:hover{
+.divCarrusel img:hover{
     cursor: pointer;
     width: 300px;
     opacity: 1;
-    filter: contrast(120%)
+    filter: contrast(120%);
 }
 
-.divCarrusel{
-    display: flex;
-    width: auto;
-    height: auto;
+@media (max-width: 460px) {
+  .divCarrusel {
+    margin: 15px 0;
+    height: 250px;
+    width: 100vw;
+    max-width: none;
+  }
+  
+  .divCarrusel img:hover {
+    width: 200px;
+  }
 }
 
 
