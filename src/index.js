@@ -16,6 +16,7 @@ root.render(
     <NavBar/>
     <HeroShot/>
     <div className="app-container">
+ 
       <Carrusel></Carrusel>
     </div>
     <ContactForm/>

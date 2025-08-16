@@ -2,20 +2,163 @@
   width: 100%;
   background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #1a3a5c 100%);
   color: #ffffff;
-  --hero-height: 500px; /* Aumentamos altura para mejor visibilidad */
-  --hero-image-max-width: 400px; /* Aumentamos ancho máximo de la imagen */
-  --hero-gap: 40px; /* Distancia uniforme entre columnas y elementos */
-  --hero-message-gap: 32px; /* Distancia entre secciones principales */
-  --hero-title-gap: 16px; /* Distancia específica entre headline y subheadline */
+  --hero-bg-base: #0f264d; /* color base por defecto del hero */
+  position: relative; /* necesario para ::before/::after */
+
+  /* Tamaños máximos pensados para pantallas grandes (ajustables) */
+  --hero-image-max-width: clamp(320px, 36vw, 720px);
+  --hero-image-max-height: min(80vh, 800px);
+}
+
+/* Fondo por color: fija también --hero-bg-base */
+.hero-shot--bg-color {
+  --hero-bg-base: var(--hero-bg-color, #0f264d);
+  background: var(--hero-bg-color, #0f264d);
+}
+
+/* Fondo por imagen: color de respaldo = base del hero (evita blanco) */
+.hero-shot--bg-image {
+  background-color: var(--hero-bg-base, #0f264d);
+  background-image: var(--hero-bg-image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Overlay opcional sobre imagen (debajo del fade) */
+.hero-shot--bg-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(
+    --hero-bg-overlay,
+    linear-gradient(90deg, rgba(8,19,37,0.55) 0%, rgba(15,38,77,0.45) 50%, rgba(26,58,92,0.55) 100%)
+  );
+  z-index: 0;
+}
+
+/* Fade-through usando el color base actual del hero */
+.fade { position: relative; }
+.fade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-fade-color, var(--hero-bg-base, #0f264d));
+  opacity: 0;
+  transition: opacity 3s ease-in-out; /* antes: 2.5s */
+  pointer-events: none;
+  z-index: 2; /* por encima del contenido y del ::before */
+}
+.fade.in::after { opacity: 0; }
+.fade.out::after { opacity: 1; }
+
+/* Asegura que el contenido quede por encima del overlay */
+.hero-shot__stage,
+.hero-shot__content {
   position: relative;
   z-index: 1;
+}
+
+/* El stage es el único que define el ancho y el padding */
+.hero-shot__stage {
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* El content siempre se ajusta al 100% del stage (sin max-width propio) */
+.hero-shot__content {
+  width: 100%;
+  max-width: none;        /* evita desalinearse del stage */
+  margin: 0;              /* quita margin auto previo */
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;     /* mantiene el fade dentro del content */
+  overflow: hidden;       /* evita desbordes visuales */
+}
+
+/* Evita que los hijos del grid “empujen” el ancho */
+.hero-shot__imageWrapper,
+.hero-shot__messages {
+  min-width: 0;
+}
+
+/* Centrado y padding responsive del stage */
+@media (max-width: 1020px) {
+  .hero-shot__stage { padding-inline: 18px; }
+}
+@media (max-width: 768px) {
+  .hero-shot__stage { padding-inline: 16px; }
+}
+@media (max-width: 480px) {
+  .hero-shot__stage { padding-inline: 14px; }
+}
+@media (max-width: 460px) {
+  .hero-shot__stage {
+    width: 100vw;
+    max-width: none;
+    padding-inline: 10px;
+  }
+}
+
+/* Altura fija desktop: el content reserva espacio y no se sale del stage */
+@media (min-width: 1021px) {
+  .hero-shot__content {
+    height: 500px;
+    min-height: 500px;
+    max-height: 500px;
+  }
+}
+
+/* Se unifica el gap para todas las diapositivas */
+
+.hero-shot__content.is-reversed {
+  grid-template-columns: 1fr 1fr;
+}
+.hero-shot__content.is-imageTop {
+  grid-template-columns: 1fr;
+}
+
+.hero-shot__content.is-close {
+  gap: 20px; /* Reduce el gap para acercar texto e imagen */
+}
+
+.hero-shot__content.is-imageTop .hero-shot__imageWrapper {
+  justify-content: center;
+}
+
+.hero-shot__content.is-imageTop .hero-shot__messages {
+  text-align: left;
+}
+
+.hero-shot__content.is-reversed .hero-shot__messages {
+  order: 2;
+}
+
+.hero-shot__content.is-reversed .hero-shot__imageWrapper {
+  order: 1;
+  justify-content: center;
+}
+
+/* Se vuelve al contenedor único con fade simple */
+
+.hero-shot__messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-message-gap);
+  height: 100%;
+  justify-content: center; /* Centra verticalmente el contenido de texto */
+  text-align: left; /* Alineación por defecto */
 }
 
 .hero-shot__text-container {
   display: flex;
   flex-direction: column;
   gap: var(--hero-message-gap);
-  padding-left: 20px;
+  padding-left: 100px;
 }
 
 .hero-shot__title-section {
@@ -77,22 +220,6 @@
   justify-content: center;
 }
 
-.fade {
-  opacity: 0;
-  transition: opacity 2.5s ease-in-out;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.fade.in {
-  opacity: 1;
-}
-
-.fade.out {
-  opacity: 0;
-}
-
 /* Se vuelve al contenedor único con fade simple */
 
 .hero-shot__messages {
@@ -132,21 +259,23 @@
   margin: 6px 0;
 }
 
+/* Centra la imagen y evita que se estire por el layout */
 .hero-shot__imageWrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100%; /* Igual altura que la columna de texto */
+  justify-content: center;
+  /* Evita que el grid/flex fuerce un estiramiento raro */
+  flex: 0 1 auto;
 }
 
+/* Mantén proporción, no escales por encima del tamaño natural */
 .hero-shot__image {
-  width: 100%;
-  max-width: var(--hero-image-max-width);
-  height: auto; /* Mantiene proporción automáticamente */
-  object-fit: cover;
-  object-position: center;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  width: auto;           /* no forzar 100% */
+  height: auto;          /* mantiene proporción */
+  max-width: min(100%, var(--hero-image-max-width));
+  max-height: var(--hero-image-max-height);
+  object-fit: contain;   /* no recorta, ajusta dentro del wrapper */
+  display: block;
 }
 
 @media (max-width: 1020px) {
@@ -155,6 +284,10 @@
     --hero-image-max-width: 350px;
     --hero-gap: 30px;
     --hero-title-gap: 14px;
+  }
+
+  .hero-shot__stage {
+    padding-inline: 18px;
   }
 
   .hero-shot__content {
@@ -201,6 +334,10 @@
     --hero-title-gap: 12px;
   }
 
+  .hero-shot__stage {
+    padding-inline: 16px;
+  }
+
   .hero-shot__content {
     padding: 30px 16px;
     gap: 25px;
@@ -231,6 +368,10 @@
     --hero-message-gap: 12px;
     --hero-image-max-width: 280px;
     --hero-title-gap: 10px;
+  }
+
+  .hero-shot__stage {
+    padding-inline: 14px;
   }
 
   .hero-shot__content {
@@ -307,7 +448,15 @@
 @media (min-width: 1021px) {
   .hero-shot__content {
     height: 500px;
-    max-height: 500px;
     min-height: 500px;
+    max-height: 500px;
+  }
+}
+
+/* Opcional: en desktop, permite imágenes un poco más grandes */
+@media (min-width: 1440px) {
+  .hero-shot {
+    --hero-image-max-width: clamp(360px, 30vw, 820px);
+    --hero-image-max-height: min(78vh, 900px);
   }
 }
