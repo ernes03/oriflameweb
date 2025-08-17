@@ -8,6 +8,23 @@
   /* Tamaños máximos pensados para pantallas grandes (ajustables) */
   --hero-image-max-width: clamp(320px, 36vw, 720px);
   --hero-image-max-height: min(80vh, 800px);
+
+  /* Altura máxima por defecto (desktop base) */
+  --hero-max-height: 600px;
+
+  /* Padding vertical total estimado (para calcular espacio de imagen) */
+  --hero-v-padding: 120px;
+
+  /* Derivados para imagen dentro del hero */
+  --hero-image-max-height: calc(var(--hero-max-height) - var(--hero-v-padding));
+
+  /* Limitar altura del bloque completo */
+  max-height: var(--hero-max-height);
+  overflow: hidden; /* evita desbordes visuales */
+  --hero-image-shadow: 0 10px 24px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.16); /* sombra por defecto */
+
+  /* Nuevo: gap entre headline y subheadline (desktop) */
+  --hero-title-gap: 50px;
 }
 
 /* Fondo por color: fija también --hero-bg-base */
@@ -67,6 +84,7 @@
   padding-inline: 20px;
   box-sizing: border-box;
   position: relative;
+  max-height: inherit;
 }
 
 /* El content siempre se ajusta al 100% del stage (sin max-width propio) */
@@ -78,6 +96,9 @@
   position: relative;
   isolation: isolate;     /* mantiene el fade dentro del content */
   overflow: hidden;       /* evita desbordes visuales */
+  max-height: inherit;
+  height: auto;     /* evita forzar altura fija */
+  min-height: 0;    /* permite que el grid no estire más de la cuenta */
 }
 
 /* Evita que los hijos del grid “empujen” el ancho */
@@ -164,7 +185,7 @@
 .hero-shot__title-section {
   display: flex;
   flex-direction: column;
-  gap: var(--hero-title-gap);
+  gap: var(--hero-title-gap, 16px); /* asegura separación entre headline y subheadline */
   margin-bottom: 24px;
 }
 
@@ -276,6 +297,8 @@
   max-height: var(--hero-image-max-height);
   object-fit: contain;   /* no recorta, ajusta dentro del wrapper */
   display: block;
+  border-radius: var(--hero-image-radius, 10px); /* asegura el redondeo */
+  box-shadow: var(--hero-image-shadow, 0 10px 24px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.16));
 }
 
 @media (max-width: 1020px) {
@@ -458,5 +481,41 @@
   .hero-shot {
     --hero-image-max-width: clamp(360px, 30vw, 820px);
     --hero-image-max-height: min(78vh, 900px);
+  }
+}
+
+/* Ajustes por resolución */
+@media (max-width: 479.98px) {
+  .hero-shot {
+    --hero-max-height: 520px;
+    --hero-v-padding: 100px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .hero-shot {
+    --hero-max-height: 560px;
+    --hero-v-padding: 110px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .hero-shot {
+    --hero-max-height: 620px;
+    --hero-v-padding: 120px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  .hero-shot {
+    --hero-max-height: 680px;
+    --hero-v-padding: 130px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-shot {
+    --hero-max-height: 760px;
+    --hero-v-padding: 140px;
   }
 }
