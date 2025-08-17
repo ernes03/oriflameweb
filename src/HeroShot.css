@@ -22,6 +22,9 @@
   max-height: var(--hero-max-height);
   overflow: hidden; /* evita desbordes visuales */
   --hero-image-shadow: 0 10px 24px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.16); /* sombra por defecto */
+
+  /* Nuevo: gap entre headline y subheadline (desktop) */
+  --hero-title-gap: 50px;
 }
 
 /* Fondo por color: fija también --hero-bg-base */
@@ -182,7 +185,7 @@
 .hero-shot__title-section {
   display: flex;
   flex-direction: column;
-  gap: var(--hero-title-gap);
+  gap: var(--hero-title-gap, 16px); /* asegura separación entre headline y subheadline */
   margin-bottom: 24px;
 }
 
