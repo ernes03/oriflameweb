@@ -2,9 +2,13 @@
   "slides": [
     {
       "headline": "Construye tu propio camino con Oriflame",
+      "headlineEnable": true,
       "subheadline": "Sé parte de una comunidad que impulsa bienestar y belleza",
+      "subheadlineEnable": false,
       "imageUrl": "HeroImage1.jpg",
+      "imageUrlEnable": false,
       "imageAlt": "Mujer sonriente de medio cuerpo a la derecha",
+      "bullets": { "enable": false },
       "messages": [
         "Genera ingresos compartiendo productos de belleza",
         "Ingredientes de origen natural y calidad europea",
@@ -17,14 +21,19 @@
         "overlay": "linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45))"
       },
       "buttonText": "Comenzar Ahora",
-      "buttonLink": "/registro"
+      "buttonLink": "/registro",
+      "button": { "enable": false }
     },
     {
       "headline": "Productos que inspiran confianza",
+      "headlineEnable": true,
       "subheadline": "Belleza responsable con estándares europeos",
-      "imageUrl": "https://example.com/hero2.webp",
+      "subheadlineEnable": false,
+      "imageUrl": "media/HeroImage2.jpg",
+      "imageUrlEnable": true,
       "imageAlt": "Mujer sosteniendo productos de belleza",
       "reverse": true,
+      "bullets": { "enable": true },
       "messages": [
         "Fórmulas con ingredientes de origen natural",
         "Resultados visibles y comprobados",
@@ -36,13 +45,18 @@
         "color": "#0f264d"
       },
       "buttonText": "Ver Productos",
-      "buttonLink": "/productos"
+      "buttonLink": "/productos",
+      "button": { "enable": true }
     },
     {
       "headline": "Impulsa tu éxito",
+      "headlineEnable": true,
       "subheadline": "Entrenamiento y acompañamiento en cada etapa",
+      "subheadlineEnable": true,
       "imageUrl": "media/HeroImage3.jpg",
+      "imageUrlEnable": true,
       "imageAlt": "Mujer con actitud segura mirando al frente",
+      "bullets": { "enable": true },
       "messages": [
         "Formación continua y mentoría",
         "Reconocimientos y metas claras",
@@ -50,7 +64,8 @@
       ],
       "background": { "enabled": false },
       "buttonText": "Unirse al Equipo",
-      "buttonLink": "https://oriflameweb.vercel.app/"
+      "buttonLink": "https://oriflameweb.vercel.app/",
+      "button": { "enable": false }
     }
   ]
 }
