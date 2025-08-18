@@ -592,7 +592,7 @@
 
 /* Configuraciones de posición para los botones */
 .hero-shot__buttons.position-left {
-  margin-left: 0;
+  margin-left: 100px;
   margin-right: auto;
 }
 
@@ -613,11 +613,12 @@
 /* Dimensiones específicas para los botones del hero shot */
 .hero-shot__buttons button,
 .hero-shot__button-container button {
-  height: 80px;
+  height: 50px;
   width: 200px;
   background-color: transparent; /* Fondo transparente */
   border: 2px solid #ffffff; /* Borde blanco visible */
   color: #ffffff;
+  border-radius: 5px; /* Esquinas redondeadas */
   transition: all 0.3s ease;
 }
 
@@ -646,6 +647,7 @@
   /* Posiciones específicas en móvil */
   .hero-shot__buttons.position-left {
     justify-content: flex-start;
+  
   }
   
   .hero-shot__buttons.position-center {

@@ -103,10 +103,19 @@ function HeroShot() {
         : ""
       : "";
 
+  // Nuevo: soporta background.imageUrl con resolución desde media/public
+  const resolvedBgUrl =
+    slide.background?.enabled &&
+    slide.background.type === "image" &&
+    slide.background.imageUrl
+      ? resolveImageCandidates(slide.background.imageUrl)[0] ||
+        slide.background.imageUrl
+      : null;
+
   const bgStyle =
     slide.background?.enabled && slide.background.type === "image"
       ? {
-          "--hero-bg-image": `url('${slide.background.imageUrl}')`,
+          "--hero-bg-image": resolvedBgUrl ? `url('${resolvedBgUrl}')` : undefined,
           "--hero-bg-base": slide.background.baseColor || "#0f264d",
           ...(typeof slide.background.overlay === "string"
             ? { "--hero-bg-overlay": slide.background.overlay }
@@ -128,7 +137,8 @@ function HeroShot() {
     .filter(Boolean)
     .join(" ");
 
-  const imageName = slide.image || slide.image2;
+  // Nuevo: soporta slide.imageUrl (URL o archivo en /src/media o /public/media)
+  const imageName = slide.imageUrl || slide.image || slide.image2;
   const candidates = resolveImageCandidates(imageName);
   const imgSrc = candidates[imgAttempt];
 
@@ -160,10 +170,22 @@ function HeroShot() {
             </div>
             <div className="hero-shot__buttons">
                 <div className="hero-shot__button-container">
-                  <button className="hero-shot__button">Acción 1</button>
+                  <button 
+                    className="hero-shot__button"
+                    onClick={() => {
+                      if (slide.buttonLink) {
+                        if (slide.buttonLink.startsWith('http')) {
+                          window.open(slide.buttonLink, '_blank');
+                        } else {
+                          window.location.href = slide.buttonLink;
+                        }
+                      }
+                    }}
+                  >
+                    {slide.buttonText || "Acción"}
+                  </button>
                 </div>
-                
-                </div>
+            </div>
           </div>
 
           {imgSrc && (
