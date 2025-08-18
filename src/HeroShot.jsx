@@ -158,6 +158,12 @@ function HeroShot() {
                 </ul>
               )}
             </div>
+            <div className="hero-shot__buttons">
+                <div className="hero-shot__button-container">
+                  <button className="hero-shot__button">Acción 1</button>
+                </div>
+                
+                </div>
           </div>
 
           {imgSrc && (

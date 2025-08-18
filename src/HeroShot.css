@@ -334,17 +334,69 @@
     order: -1; /* Imagen siempre arriba en móvil */
   }
 
+  /* Centrado completo en móvil */
   .hero-shot__messages {
-    text-align: center !important; /* Centra el texto en móvil */
+    text-align: center !important;
+    align-items: center !important; /* Centra los elementos flex */
+    flex-direction: column; /* Cambia a columna en móvil */
   }
 
   .hero-shot__text-container {
     padding-left: 0; /* Quita el padding izquierdo en móvil */
+    text-align: center; /* Centra el contenido del texto */
+    align-items: center; /* Centra elementos flex */
+    width: 100%; /* Asegura que tome todo el ancho */
+  }
+
+  .hero-shot__title-section {
+    text-align: center; /* Centra títulos */
+    width: 100%;
   }
 
   .hero-shot__bullets {
     list-style: none; /* Quita las viñetas */
     padding-left: 0; /* Quita el padding izquierdo */
+    text-align: center; /* Centra las bullets */
+    width: 100%;
+  }
+
+  /* Arregla el centrado de los botones en móvil */
+  .hero-shot__buttons {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+    justify-content: center !important; /* Fuerza el centrado */
+    display: flex;
+  }
+
+  .hero-shot__button-container {
+    justify-content: center; /* Centra el contenedor de botones */
+    width: 100%;
+  }
+  
+  /* Posiciones específicas en móvil - ahora funcionan correctamente */
+  .hero-shot__buttons.position-left {
+    justify-content: flex-start !important;
+  }
+  
+  .hero-shot__buttons.position-center {
+    justify-content: center !important;
+  }
+  
+  .hero-shot__buttons.position-right {
+    justify-content: flex-end !important;
+  }
+
+  .hero-shot__buttons.position-left .hero-shot__button-container {
+    justify-content: flex-start;
+  }
+  
+  .hero-shot__buttons.position-center .hero-shot__button-container {
+    justify-content: center;
+  }
+  
+  .hero-shot__buttons.position-right .hero-shot__button-container {
+    justify-content: flex-end;
   }
 }
 
@@ -517,5 +569,90 @@
   .hero-shot {
     --hero-max-height: 760px;
     --hero-v-padding: 140px;
+  }
+}
+
+/* Layout: botón a la derecha del texto */
+.hero-shot__messages {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-shot__text-container {
+  flex: 1 1 10px;
+  min-width: 0;
+}
+
+.hero-shot__buttons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Configuraciones de posición para los botones */
+.hero-shot__buttons.position-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.hero-shot__buttons.position-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-shot__buttons.position-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.hero-shot__button-container {
+  display: flex;
+}
+
+/* Dimensiones específicas para los botones del hero shot */
+.hero-shot__buttons button,
+.hero-shot__button-container button {
+  height: 80px;
+  width: 200px;
+  background-color: transparent; /* Fondo transparente */
+  border: 2px solid #ffffff; /* Borde blanco visible */
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+/* Estado hover para mejor interactividad */
+.hero-shot__buttons button:hover,
+.hero-shot__button-container button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Ligero fondo blanco al hover */
+  border-color: #ffffff;
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* En móviles, apila debajo del texto */
+@media (max-width: 1020px) {
+  .hero-shot__messages {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .hero-shot__buttons {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    justify-content: center; /* Centra en móvil por defecto */
+  }
+  
+  /* Posiciones específicas en móvil */
+  .hero-shot__buttons.position-left {
+    justify-content: flex-start;
+  }
+  
+  .hero-shot__buttons.position-center {
+    justify-content: center;
+  }
+  
+  .hero-shot__buttons.position-right {
+    justify-content: flex-end;
   }
 }
