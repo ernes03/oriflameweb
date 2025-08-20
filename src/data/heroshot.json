@@ -2,11 +2,13 @@
   "slides": [
     {
       "headline": "Construye tu propio camino con Oriflame",
+      "headlineEnable": true,
       "subheadline": "Sé parte de una comunidad que impulsa bienestar y belleza",
-      "image2": "HeroImage1.jpg",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
+      "subheadlineEnable": false,
+      "imageUrl": "HeroImage1.jpg",
+      "imageUrlEnable": true,
       "imageAlt": "Mujer sonriente de medio cuerpo a la derecha",
-      "spaced": false,
+      "bullets": { "enable": false },
       "messages": [
         "Genera ingresos compartiendo productos de belleza",
         "Ingredientes de origen natural y calidad europea",
@@ -17,15 +19,21 @@
         "type": "image",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
         "overlay": "linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45))"
-      }
+      },
+      "buttonText": "Comenzar Ahora",
+      "buttonLink": "/registro",
+       "button": { "enable": true, "area": "text", "position": "left" }
     },
     {
       "headline": "Productos que inspiran confianza",
+      "headlineEnable": true,
       "subheadline": "Belleza responsable con estándares europeos",
-      "image": "HeroImage2.jpg",
+      "subheadlineEnable": false,
+      "imageUrl": "media/HeroImage2.jpg",
+      "imageUrlEnable": true,
       "imageAlt": "Mujer sosteniendo productos de belleza",
       "reverse": true,
-      "textAlign": "left",
+      "bullets": { "enable": true },
       "messages": [
         "Fórmulas con ingredientes de origen natural",
         "Resultados visibles y comprobados",
@@ -35,22 +43,29 @@
         "enabled": true,
         "type": "color",
         "color": "#0f264d"
-      }
+      },
+      "buttonText": "Ver Productos",
+      "buttonLink": "/productos",
+      "button": { "enable": true, "area": "image", "position": "center" }
     },
     {
       "headline": "Impulsa tu éxito",
+      "headlineEnable": true,
       "subheadline": "Entrenamiento y acompañamiento en cada etapa",
-      "image": "HeroImage3.jpg",
+      "subheadlineEnable": true,
+      "imageUrl": "media/HeroImage3.jpg",
+      "imageUrlEnable": true,
       "imageAlt": "Mujer con actitud segura mirando al frente",
-      "spaced": false,
+      "bullets": { "enable": true },
       "messages": [
         "Formación continua y mentoría",
         "Reconocimientos y metas claras",
         "Crecimiento personal y profesional"
       ],
-      "background": {
-        "enabled": false
-      }
+      "background": { "enabled": false },
+      "buttonText": "Unirse al Equipo",
+      "buttonLink": "https://oriflameweb.vercel.app/",
+      "button": { "enable": true, "area": "text", "position": "left" }
     }
   ]
 }
