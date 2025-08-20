@@ -103,10 +103,19 @@ function HeroShot() {
         : ""
       : "";
 
+  // Nuevo: soporta background.imageUrl con resolución desde media/public
+  const resolvedBgUrl =
+    slide.background?.enabled &&
+    slide.background.type === "image" &&
+    slide.background.imageUrl
+      ? resolveImageCandidates(slide.background.imageUrl)[0] ||
+        slide.background.imageUrl
+      : null;
+
   const bgStyle =
     slide.background?.enabled && slide.background.type === "image"
       ? {
-          "--hero-bg-image": `url('${slide.background.imageUrl}')`,
+          "--hero-bg-image": resolvedBgUrl ? `url('${resolvedBgUrl}')` : undefined,
           "--hero-bg-base": slide.background.baseColor || "#0f264d",
           ...(typeof slide.background.overlay === "string"
             ? { "--hero-bg-overlay": slide.background.overlay }
@@ -128,9 +137,109 @@ function HeroShot() {
     .filter(Boolean)
     .join(" ");
 
-  const imageName = slide.image || slide.image2;
+  // Nuevo: soporta slide.imageUrl y objeto image.url
+  const imageName = slide.image?.url || slide.imageUrl || slide.image || slide.image2;
   const candidates = resolveImageCandidates(imageName);
   const imgSrc = candidates[imgAttempt];
+  const imgAlt = slide.image?.alt || slide.imageAlt || "";
+
+  // Texto del headline con alias
+  const headlineText =
+    slide.title?.text ??
+    slide.headline?.text ??
+    slide.headline ??
+    slide.title;
+
+  // Enable/disable del headline
+  const isHeadlineEnabled = (() => {
+    if (typeof slide.title?.enable === "boolean") return slide.title.enable;
+    if (typeof slide.headline?.enable === "boolean") return slide.headline.enable;
+    if (typeof slide.headlineEnable === "boolean") return slide.headlineEnable;
+    if (typeof slide.titleEnable === "boolean") return slide.titleEnable;
+    if (typeof slide.headlineEnabled === "boolean") return slide.headlineEnabled;
+    if (typeof slide.titleEnabled === "boolean") return slide.titleEnabled;
+    return true;
+  })();
+
+  // Botón: enable/area/position
+  const isButtonEnabled = (() => {
+    if (typeof slide.button?.enable === "boolean") return slide.button.enable;
+    if (typeof slide.button?.enabled === "boolean") return slide.button.enabled;
+    if (typeof slide.buttonEnabled === "boolean") return slide.buttonEnabled;
+    return true;
+  })();
+
+  const buttonArea = (slide.button?.area || "text").toLowerCase();          // "text" | "image"
+  const buttonPosition = (slide.button?.position || "right").toLowerCase(); // "left" | "center" | "right"
+
+  const handleButtonClick = () => {
+    const href = slide.buttonLink;
+    if (!href) return;
+    if (String(href).startsWith("http")) window.open(href, "_blank");
+    else window.location.href = href;
+  };
+
+  const ButtonBlock = () =>
+    !isButtonEnabled ? null : (
+      <div
+        className={
+          `hero-shot__buttons position-${["left","center","right"].includes(buttonPosition) ? buttonPosition : "right"} ` +
+          (buttonArea === "image" ? "in-image" : "in-text")
+        }
+      >
+        <div className="hero-shot__button-container">
+          <button className="hero-shot__button" onClick={handleButtonClick}>
+            {slide.buttonText || "Acción"}
+          </button>
+        </div>
+      </div>
+    );
+
+  // Nuevo: habilitar/deshabilitar imagen por slide (imageUrlEnable o image.enable/enabled)
+  const isImageEnabled = (() => {
+    if (typeof slide.image?.enable === "boolean") return slide.image.enable;
+    if (typeof slide.image?.enabled === "boolean") return slide.image.enabled;
+    if (typeof slide.imageUrlEnable === "boolean") return slide.imageUrlEnable;
+    if (typeof slide.imageEnabled === "boolean") return slide.imageEnabled;
+    if (typeof slide.imageEnable === "boolean") return slide.imageEnable;
+    return true;
+  })();
+
+  // Nuevo: flag para saber si hay imagen renderizable
+  const hasImage = isImageEnabled && Boolean(imgSrc);
+
+  // Nuevo: habilitar/deshabilitar bullets y fuente de datos
+  const areBulletsEnabled = (() => {
+    if (typeof slide.bullets?.enable === "boolean") return slide.bullets.enable;
+    if (typeof slide.bullets?.enabled === "boolean") return slide.bullets.enabled;
+    if (typeof slide.messagesEnable === "boolean") return slide.messagesEnable;
+    if (typeof slide.bulletsEnable === "boolean") return slide.bulletsEnable;
+    return true;
+  })();
+
+  const bullets = Array.isArray(slide.bullets?.items)
+    ? slide.bullets.items
+    : Array.isArray(slide.messages)
+    ? slide.messages
+    : [];
+
+  // Texto del subheadline con alias
+  const subheadlineText =
+    slide.subtitle?.text ??
+    slide.subheadline?.text ??
+    slide.subheadline ??
+    slide.subtitle;
+
+  // Enable/disable del subheadline
+  const isSubheadlineEnabled = (() => {
+    if (typeof slide.subtitle?.enable === "boolean") return slide.subtitle.enable;
+    if (typeof slide.subheadline?.enable === "boolean") return slide.subheadline.enable;
+    if (typeof slide.subheadlineEnable === "boolean") return slide.subheadlineEnable;
+    if (typeof slide.subtitleEnable === "boolean") return slide.subtitleEnable;
+    if (typeof slide.subheadlineEnabled === "boolean") return slide.subheadlineEnabled;
+    if (typeof slide.subtitleEnabled === "boolean") return slide.subtitleEnabled;
+    return true;
+  })();
 
   return (
     <section
@@ -142,42 +251,30 @@ function HeroShot() {
           <div className="hero-shot__messages">
             <div className="hero-shot__text-container">
               <div className="hero-shot__title-section">
-                {slide.headline && (
-                  <h2 className="hero-shot__headline">{slide.headline}</h2>
+                {isHeadlineEnabled && headlineText && (
+                  <h2 className="hero-shot__headline">{headlineText}</h2>
                 )}
-                {slide.subheadline && (
-                  <p className="hero-shot__subheadline">{slide.subheadline}</p>
+                {isSubheadlineEnabled && subheadlineText && (
+                  <p className="hero-shot__subheadline">{subheadlineText}</p>
                 )}
               </div>
 
-              {Array.isArray(slide.messages) && slide.messages.length > 0 && (
+              {areBulletsEnabled && bullets.length > 0 && (
                 <ul className="hero-shot__bullets">
-                  {slide.messages.map((m, i) => (
+                  {bullets.map((m, i) => (
                     <li key={i}>{m}</li>
                   ))}
                 </ul>
               )}
             </div>
+            {buttonArea !== "image" && <ButtonBlock />}
           </div>
 
-          {imgSrc && (
-            <div className="hero-shot__imageWrapper">
-              <img
-                className="hero-shot__image"
-                src={imgSrc}
-                alt={slide.imageAlt || ""}
-                loading="lazy"
-                onError={() => {
-                  if (imgAttempt < candidates.length - 1) {
-                    setImgAttempt((n) => n + 1);
-                  } else {
-                    // eslint-disable-next-line no-console
-                    console.error("[HeroShot] no se pudo cargar:", imageName, candidates);
-                  }
-                }}
-              />
-            </div>
-          )}
+          {/* Siempre renderizar el contenedor de imagen para poder mostrar el botón ahí */}
+          <div className={`hero-shot__imageWrapper${hasImage ? "" : " has-no-image"}`}>
+            {hasImage && <img className="hero-shot__image" src={imgSrc} alt={imgAlt} />}
+            {buttonArea === "image" && isButtonEnabled && <ButtonBlock />}
+          </div>
         </div>
       </div>
     </section>
