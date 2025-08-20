@@ -246,6 +246,7 @@
 .hero-shot__content.is-reversed .hero-shot__imageWrapper {
   order: 1;
   justify-content: center;
+  gap: 20px
 }
 
 /* Se vuelve al contenedor único con fade simple */
@@ -922,3 +923,114 @@
 .hero-shot__buttons.position-left { justify-content: flex-start; }
 .hero-shot__buttons.position-center { justify-content: center; }
 .hero-shot__buttons.position-right { justify-content: flex-end; }
+
+/* Responsive fixes: <= 1020px (tablets y móviles grandes) */
+@media (max-width: 1020px) {
+  .hero-shot {
+    --hero-row-height: auto;            /* sin altura fija */
+    --hero-no-image-height: 320px;      /* placeholder cuando no hay imagen */
+    --hero-image-max-width: 340px;      /* límite de imagen */
+    --hero-gap: 28px;
+  }
+
+  .hero-shot__content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "text";                           /* imagen arriba, texto abajo */
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    gap: var(--hero-gap);
+    padding: 40px var(--hero-h-padding); /* usa padding horizontal unificado */
+    justify-items: stretch;
+    align-items: start;
+    overflow: visible;
+  }
+
+  .hero-shot__messages,
+  .hero-shot__imageWrapper {
+    height: auto;
+    min-height: 0;
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .hero-shot__imageWrapper {
+    order: -1;                          /* asegura imagen arriba */
+    max-width: none;                     /* botón puede llegar al borde */
+    padding: 8px 0;
+  }
+
+  .hero-shot__imageWrapper.has-no-image {
+    min-height: var(--hero-no-image-height);
+  }
+
+  .hero-shot__text-container {
+    max-width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Botones: respetan position en móvil/tablet */
+  .hero-shot__buttons {
+    width: 100%;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+  .hero-shot__buttons.position-left   { justify-content: flex-start !important; }
+  .hero-shot__buttons.position-center { justify-content: center !important; }
+  .hero-shot__buttons.position-right  { justify-content: flex-end !important; }
+
+  /* Botón en bloque de imagen: abajo del wrapper */
+  .hero-shot__imageWrapper .hero-shot__buttons.in-image {
+    margin-top: auto;
+  }
+}
+
+/* Tablets medianos: compactar un poco más */
+@media (max-width: 768px) {
+  .hero-shot {
+    --hero-image-max-width: 300px;
+    --hero-gap: 24px;
+  }
+  .hero-shot__content {
+    padding: 28px var(--hero-h-padding);
+    gap: var(--hero-gap);
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .hero-shot {
+    --hero-image-max-width: 280px;
+    --hero-gap: 20px;
+    --hero-no-image-height: 280px;
+  }
+  .hero-shot__content {
+    padding: 22px var(--hero-h-padding);
+  }
+}
+
+/* Forzar CENTRO < 1021px para cualquier botón (texto o imagen) */
+@media (max-width: 1020px) {
+  .hero-shot__buttons,
+  .hero-shot__buttons.in-text,
+  .hero-shot__buttons.in-image,
+  .hero-shot__buttons.position-left,
+  .hero-shot__buttons.position-center,
+  .hero-shot__buttons.position-right {
+    justify-content: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+  }
+
+  .hero-shot__buttons .hero-shot__button-container {
+    display: flex;
+    justify-content: center !important;
+    width: 100%;
+  }
+}
