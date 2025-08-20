@@ -6,7 +6,7 @@
       "subheadline": "Sé parte de una comunidad que impulsa bienestar y belleza",
       "subheadlineEnable": false,
       "imageUrl": "HeroImage1.jpg",
-      "imageUrlEnable": false,
+      "imageUrlEnable": true,
       "imageAlt": "Mujer sonriente de medio cuerpo a la derecha",
       "bullets": { "enable": false },
       "messages": [
@@ -22,7 +22,7 @@
       },
       "buttonText": "Comenzar Ahora",
       "buttonLink": "/registro",
-      "button": { "enable": false }
+       "button": { "enable": true, "area": "text", "position": "left" }
     },
     {
       "headline": "Productos que inspiran confianza",
@@ -46,7 +46,7 @@
       },
       "buttonText": "Ver Productos",
       "buttonLink": "/productos",
-      "button": { "enable": true }
+      "button": { "enable": true, "area": "image", "position": "center" }
     },
     {
       "headline": "Impulsa tu éxito",
@@ -65,7 +65,7 @@
       "background": { "enabled": false },
       "buttonText": "Unirse al Equipo",
       "buttonLink": "https://oriflameweb.vercel.app/",
-      "button": { "enable": false }
+      "button": { "enable": true, "area": "text", "position": "left" }
     }
   ]
 }

@@ -161,14 +161,39 @@ function HeroShot() {
     return true;
   })();
 
-  // Habilitar/deshabilitar botón por slide
+  // Botón: enable/area/position
   const isButtonEnabled = (() => {
     if (typeof slide.button?.enable === "boolean") return slide.button.enable;
     if (typeof slide.button?.enabled === "boolean") return slide.button.enabled;
     if (typeof slide.buttonEnabled === "boolean") return slide.buttonEnabled;
-    if (typeof slide.buttonEnable === "boolean") return slide.buttonEnable;
-    return true; // por defecto mostrado
+    return true;
   })();
+
+  const buttonArea = (slide.button?.area || "text").toLowerCase();          // "text" | "image"
+  const buttonPosition = (slide.button?.position || "right").toLowerCase(); // "left" | "center" | "right"
+
+  const handleButtonClick = () => {
+    const href = slide.buttonLink;
+    if (!href) return;
+    if (String(href).startsWith("http")) window.open(href, "_blank");
+    else window.location.href = href;
+  };
+
+  const ButtonBlock = () =>
+    !isButtonEnabled ? null : (
+      <div
+        className={
+          `hero-shot__buttons position-${["left","center","right"].includes(buttonPosition) ? buttonPosition : "right"} ` +
+          (buttonArea === "image" ? "in-image" : "in-text")
+        }
+      >
+        <div className="hero-shot__button-container">
+          <button className="hero-shot__button" onClick={handleButtonClick}>
+            {slide.buttonText || "Acción"}
+          </button>
+        </div>
+      </div>
+    );
 
   // Nuevo: habilitar/deshabilitar imagen por slide (imageUrlEnable o image.enable/enabled)
   const isImageEnabled = (() => {
@@ -179,6 +204,9 @@ function HeroShot() {
     if (typeof slide.imageEnable === "boolean") return slide.imageEnable;
     return true;
   })();
+
+  // Nuevo: flag para saber si hay imagen renderizable
+  const hasImage = isImageEnabled && Boolean(imgSrc);
 
   // Nuevo: habilitar/deshabilitar bullets y fuente de datos
   const areBulletsEnabled = (() => {
@@ -239,46 +267,14 @@ function HeroShot() {
                 </ul>
               )}
             </div>
-
-            {isButtonEnabled && (
-              <div className="hero-shot__buttons">
-                <div className="hero-shot__button-container">
-                  <button 
-                    className="hero-shot__button"
-                    onClick={() => {
-                      if (slide.buttonLink) {
-                        if (slide.buttonLink.startsWith('http')) {
-                          window.open(slide.buttonLink, '_blank');
-                        } else {
-                          window.location.href = slide.buttonLink;
-                        }
-                      }
-                    }}
-                  >
-                    {slide.buttonText || "Acción"}
-                  </button>
-                </div>
-              </div>
-            )}
+            {buttonArea !== "image" && <ButtonBlock />}
           </div>
 
-          {isImageEnabled && imgSrc && (
-            <div className="hero-shot__imageWrapper">
-              <img
-                className="hero-shot__image"
-                src={imgSrc}
-                alt={imgAlt}
-                loading="lazy"
-                onError={() => {
-                  if (imgAttempt < candidates.length - 1) {
-                    setImgAttempt((n) => n + 1);
-                  } else {
-                    console.error("[HeroShot] no se pudo cargar:", imageName, candidates);
-                  }
-                }}
-              />
-            </div>
-          )}
+          {/* Siempre renderizar el contenedor de imagen para poder mostrar el botón ahí */}
+          <div className={`hero-shot__imageWrapper${hasImage ? "" : " has-no-image"}`}>
+            {hasImage && <img className="hero-shot__image" src={imgSrc} alt={imgAlt} />}
+            {buttonArea === "image" && isButtonEnabled && <ButtonBlock />}
+          </div>
         </div>
       </div>
     </section>

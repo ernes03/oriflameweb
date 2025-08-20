@@ -70,7 +70,7 @@
 .fade.in::after { opacity: 0; }
 .fade.out::after { opacity: 1; }
 
-/* Asegura que el contenido quede por encima del overlay */
+/* Asegura que el contenido quede por encima del overlay */ya
 .hero-shot__stage,
 .hero-shot__content {
   position: relative;
@@ -79,9 +79,10 @@
 
 /* El stage es el único que define el ancho y el padding */
 .hero-shot__stage {
-  max-width: 1600px;
-  margin-inline: auto;
-  padding-inline: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
   box-sizing: border-box;
   position: relative;
   max-height: inherit;
@@ -89,6 +90,12 @@
 
 /* El content siempre se ajusta al 100% del stage (sin max-width propio) */
 .hero-shot__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "text image";
+  align-items: center;          /* centra verticalmente ambos lados */
+  justify-items: start;         /* alinea contenidos a la izquierda en su celda */
+  gap: var(--hero-gap, 32px);
   width: 100%;
   max-width: none;        /* evita desalinearse del stage */
   margin: 0;              /* quita margin auto previo */
@@ -273,32 +280,64 @@
 
 .hero-shot__bullets {
   margin: 0;
-  padding-left: 18px;
+  padding-left: 1.2rem;
 }
 
 .hero-shot__bullets li {
-  margin: 6px 0;
+  margin: 0 0 6px;
 }
 
 /* Centra la imagen y evita que se estire por el layout */
 .hero-shot__imageWrapper {
+  grid-area: image;
+  align-self: center;
+  justify-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: min(560px, 100%);
   /* Evita que el grid/flex fuerce un estiramiento raro */
   flex: 0 1 auto;
 }
 
+/* El wrapper existe siempre; cuando no hay imagen, reserva altura fija */
+.hero-shot__imageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.hero-shot__imageWrapper.has-no-image {
+  min-height: var(--hero-no-image-height, 360px); /* altura placeholder */
+}
+
 /* Mantén proporción, no escales por encima del tamaño natural */
 .hero-shot__image {
-  width: auto;           /* no forzar 100% */
-  height: auto;          /* mantiene proporción */
-  max-width: min(100%, var(--hero-image-max-width));
-  max-height: var(--hero-image-max-height);
-  object-fit: contain;   /* no recorta, ajusta dentro del wrapper */
   display: block;
+  width: 100%;
+  height: auto;
+  max-width: 520px;
+  max-height: var(--hero-image-max-height, 420px);
+  object-fit: contain;
   border-radius: var(--hero-image-radius, 10px); /* asegura el redondeo */
   box-shadow: var(--hero-image-shadow, 0 10px 24px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.16));
+}
+
+/* Tipografías con márgenes uniformes */
+.hero-shot__headline {
+  margin: 0 0 8px;
+  line-height: 1.15;
+}
+.hero-shot__subheadline {
+  margin: 0 0 16px;
+}
+.hero-shot__bullets {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.hero-shot__bullets li {
+  margin: 0 0 6px;
 }
 
 @media (max-width: 1020px) {
@@ -315,6 +354,10 @@
 
   .hero-shot__content {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "text";
+    justify-items: center;
     min-height: auto;
     padding: 40px 20px;
     gap: 30px;
@@ -630,31 +673,252 @@
   transform: translateY(-2px); /* Efecto de elevación */
 }
 
-/* En móviles, apila debajo del texto */
+/* Overrides de alineación horizontal consistente */
+.hero-shot {
+  --hero-h-padding: 24px;  /* padding horizontal global */
+  --hero-gap: 32px;        /* separación entre columnas/filas */
+}
+
+/* Stage: usa la variable para ambos lados */
+.hero-shot__stage {
+  padding-left: var(--hero-h-padding);
+  padding-right: var(--hero-h-padding);
+}
+
+/* Content: usa la misma variable; quita valores fijos 20px */
+.hero-shot__content {
+  padding: 60px var(--hero-h-padding);
+  gap: var(--hero-gap);
+}
+
+/* Quita sangría que desalineaba con el margen izquierdo */
+.hero-shot__text-container {
+  padding-left: 0;
+}
+
+/* Botón alineado al borde izquierdo del stage, sin sangrías mágicas */
+.hero-shot__buttons.position-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Breakpoints: ajusta solo la variable, no reglas sueltas */
 @media (max-width: 1020px) {
-  .hero-shot__messages {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .hero-shot__buttons {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-    justify-content: center; /* Centra en móvil por defecto */
-  }
-  
-  /* Posiciones específicas en móvil */
-  .hero-shot__buttons.position-left {
-    justify-content: flex-start;
-  
-  }
-  
-  .hero-shot__buttons.position-center {
-    justify-content: center;
-  }
-  
-  .hero-shot__buttons.position-right {
-    justify-content: flex-end;
+  .hero-shot { --hero-h-padding: 18px; }
+  .hero-shot__content { padding: 40px var(--hero-h-padding); }
+}
+@media (max-width: 768px) {
+  .hero-shot { --hero-h-padding: 16px; }
+  .hero-shot__content { padding: 30px var(--hero-h-padding); }
+}
+@media (max-width: 480px) {
+  .hero-shot { --hero-h-padding: 14px; }
+  .hero-shot__content { padding: 25px var(--hero-h-padding); }
+}
+@media (max-width: 460px) {
+  .hero-shot { --hero-h-padding: 10px; }
+  .hero-shot__content { padding: 15px var(--hero-h-padding); }
+}
+
+/* Posicionamiento del botón en texto o imagen */
+.hero-shot__imageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.hero-shot__buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* por defecto centro */
+  margin-top: 12px;
+}
+
+.hero-shot__buttons.position-left { justify-content: flex-start; }
+.hero-shot__buttons.position-center { justify-content: center; }
+.hero-shot__buttons.position-right { justify-content: flex-end; }
+
+/* Altura mínima por defecto (puedes sobrescribirla por slide vía style) */
+.hero-shot { --hero-row-min-height: 420px; }
+
+.hero-shot__content {
+  min-height: var(--hero-row-min-height);
+  align-items: stretch; /* ambas columnas misma altura */
+}
+
+/* Igualar alturas y proporción de imágenes (overrides finales) */
+.hero-shot {
+  --hero-row-height: 560px;         /* altura fija desktop */
+  --hero-image-max-width: 520px;    /* tope ancho imagen */
+  --hero-image-max-height: 380px;   /* tope alto imagen */
+}
+
+@media (max-width: 1020px) {
+  .hero-shot {
+    --hero-row-height: 440px;
+    --hero-image-max-height: 320px;
   }
 }
+@media (max-width: 768px) {
+  .hero-shot {
+    --hero-row-height: 380px;
+    --hero-image-max-height: 280px;
+  }
+}
+@media (max-width: 480px) {
+  .hero-shot {
+    --hero-row-height: 340px;
+    --hero-image-max-height: 240px;
+  }
+}
+
+/* Fuerza misma altura en ambas columnas del grid */
+.hero-shot__content {
+  height: var(--hero-row-height);
+  min-height: var(--hero-row-height);
+  max-height: var(--hero-row-height);
+  align-items: stretch; /* columnas igual altura */
+}
+
+/* Cada columna llena la altura y centra su contenido */
+.hero-shot__messages,
+.hero-shot__imageWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Si no hay imagen, mantiene el espacio para el botón */
+.hero-shot__imageWrapper.has-no-image {
+  min-height: 100%;
+}
+
+/* Proporción y límites de la imagen (respeta aspecto) */
+.hero-shot__imageWrapper {
+  padding: 8px 0; /* da un poco de aire a la imagen */
+}
+.hero-shot__image {
+  width: 100%;
+  height: auto;
+  max-width: var(--hero-image-max-width);
+  max-height: var(--hero-image-max-height);
+  object-fit: contain; /* mantiene proporción */
+}
+
+/* Alineación del botón en el área de imagen (izq/centro/der) */
+.hero-shot__buttons.in-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+.hero-shot__buttons.in-image.position-left { justify-content: flex-start; }
+.hero-shot__buttons.in-image.position-center { justify-content: center; }
+.hero-shot__buttons.in-image.position-right { justify-content: flex-end; }
+
+/* Botón al fondo del bloque de imagen */
+.hero-shot__imageWrapper {
+  justify-content: flex-start; /* contenido arriba */
+}
+.hero-shot__imageWrapper .hero-shot__buttons.in-image {
+  margin-top: auto; /* empuja el botón al final (abajo) */
+}
+
+/* Placeholder cuando no hay imagen: mantiene altura y botón abajo */
+.hero-shot__imageWrapper.has-no-image {
+  min-height: var(--hero-no-image-height, 360px);
+}
+
+/* Opcional: también al fondo en el bloque de texto */
+.hero-shot__messages .hero-shot__buttons.in-text {
+  margin-top: auto;
+}
+
+/* Estira cada columna al 100% del ancho del grid-column */
+.hero-shot__messages,
+.hero-shot__imageWrapper {
+  justify-self: stretch;  /* importante en grid */
+  width: 100%;
+}
+
+/* Limita SOLO el texto, no la columna completa */
+.hero-shot__text-container {
+  max-width: 640px;
+  width: 100%;
+  margin: 0; /* evita sangrías que desalinean el botón */
+}
+
+/* El wrapper de imagen no debe tener max-width: centra la imagen dentro */
+.hero-shot__imageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: none; /* clave para que el botón alcance el borde */
+}
+.hero-shot__image {
+  align-self: center;               /* centra la imagen dentro del wrapper ancho */
+  max-width: var(--hero-image-max-width, 520px);
+  max-height: var(--hero-image-max-height, 380px);
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Botón ocupa el ancho completo del contenedor y se alinea según position */
+.hero-shot__buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* default centro */
+  gap: 8px;
+}
+.hero-shot__buttons.position-left { justify-content: flex-start; }
+.hero-shot__buttons.position-center { justify-content: center; }
+.hero-shot__buttons.position-right { justify-content: flex-end; }
+
+/* Si el botón va en el bloque de imagen y no hay imagen, queda abajo */
+.hero-shot__imageWrapper .hero-shot__buttons.in-image { margin-top: auto; }
+.hero-shot__imageWrapper.has-no-image { min-height: var(--hero-no-image-height, 360px); }
+
+/* Alinear el bloque de texto con los bordes de hero-shot__content */
+.hero-shot__messages {
+  grid-area: text;
+  justify-self: stretch;
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
+}
+
+.hero-shot__text-container {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 0 !important;  /* elimina el padding de 100px */
+  padding-right: 0 !important;
+  margin: 0 !important;
+}
+
+/* Asegura que título y botón no tengan sangría izquierda extra */
+.hero-shot__title-section,
+.hero-shot__headline,
+.hero-shot__subheadline {
+  margin-left: 0 !important;
+}
+
+.hero-shot__buttons.in-text {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Si usas posición por clases, respeta bordes del content */
+.hero-shot__buttons.position-left { justify-content: flex-start; }
+.hero-shot__buttons.position-center { justify-content: center; }
+.hero-shot__buttons.position-right { justify-content: flex-end; }
