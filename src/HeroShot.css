@@ -1,8 +1,10 @@
 .hero-shot {
   width: 100%;
-  background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #1a3a5c 100%);
+  /*background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #1a3a5c 100%);*/
+  background: #181818;
+
   color: #ffffff;
-  --hero-bg-base: #0f264d; /* color base por defecto del hero */
+  --hero-bg-base: #181818; /* color base por defecto del hero */
   position: relative; /* necesario para ::before/::after */
 
   /* Tamaños máximos pensados para pantallas grandes (ajustables) */
@@ -29,13 +31,13 @@
 
 /* Fondo por color: fija también --hero-bg-base */
 .hero-shot--bg-color {
-  --hero-bg-base: var(--hero-bg-color, #0f264d);
-  background: var(--hero-bg-color, #0f264d);
+  --hero-bg-base: var(--hero-bg-color, #181818);
+  background: var(--hero-bg-color, #181818);
 }
 
 /* Fondo por imagen: color de respaldo = base del hero (evita blanco) */
 .hero-shot--bg-image {
-  background-color: var(--hero-bg-base, #0f264d);
+  background-color: var(--hero-bg-base, #181818);
   background-image: var(--hero-bg-image);
   background-position: center;
   background-size: cover;
@@ -50,7 +52,7 @@
   pointer-events: none;
   background: var(
     --hero-bg-overlay,
-    linear-gradient(90deg, rgba(8,19,37,0.55) 0%, rgba(15,38,77,0.45) 50%, rgba(26,58,92,0.55) 100%)
+    linear-gradient(90deg, rgba(24,24,24,0.55) 0%, rgba(24,24,24,0.45) 50%, rgba(24,24,24,0.55) 100%)
   );
   z-index: 0;
 }
@@ -61,7 +63,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--hero-fade-color, var(--hero-bg-base, #0f264d));
+  background: var(--hero-fade-color, var(--hero-bg-base, #181818));
   opacity: 0;
   transition: opacity 3s ease-in-out; /* antes: 2.5s */
   pointer-events: none;
@@ -271,17 +273,19 @@
   margin: 0;
   font-size: clamp(28px, 4vw, 42px);
   line-height: 1.2;
+  color: #ECE2C6; /* color arena para el título */
 }
 
 .hero-shot__subheadline {
   margin: 0;
   font-size: clamp(16px, 2.5vw, 20px);
-  color: #dce6f7;
+  color: #ECE2C6; /* color arena para el subtítulo */
 }
 
 .hero-shot__bullets {
   margin: 0;
   padding-left: 1.2rem;
+  color: #ECE2C6; /* color arena para las bullets */
 }
 
 .hero-shot__bullets li {
@@ -329,18 +333,22 @@
 .hero-shot__headline {
   margin: 0 0 8px;
   line-height: 1.15;
+  color: #ECE2C6; /* color arena para el título */
 }
 .hero-shot__subheadline {
   margin: 0 0 16px;
+  color: #ECE2C6; /* color arena para el subtítulo */
 }
 .hero-shot__bullets {
   margin: 0;
   padding-left: 1.2rem;
+  color: #ECE2C6; /* color arena para las bullets */
 }
 .hero-shot__bullets li {
   margin: 0 0 6px;
 }
 
+/* Centrado y padding responsive del stage */
 @media (max-width: 1020px) {
   .hero-shot {
     --hero-height: auto;
@@ -468,15 +476,18 @@
 
   .hero-shot__headline {
     font-size: clamp(24px, 5vw, 32px);
+    color: #ECE2C6; /* color arena para el título */
   }
 
   .hero-shot__subheadline {
     font-size: clamp(14px, 3vw, 18px);
+    color: #ECE2C6; /* color arena para el subtítulo */
   }
 
   .hero-shot__bullets {
     list-style: none;
     padding-left: 0;
+    color: #ECE2C6; /* color arena para las bullets */
   }
 }
 
@@ -504,15 +515,18 @@
 
   .hero-shot__headline {
     font-size: clamp(20px, 5.5vw, 28px);
+    color: #ECE2C6; /* color arena para el título */
   }
 
   .hero-shot__subheadline {
     font-size: clamp(13px, 3.5vw, 16px);
+    color: #ECE2C6; /* color arena para el subtítulo */
   }
 
   .hero-shot__bullets {
     list-style: none;
     padding-left: 0;
+    color: #ECE2C6; /* color arena para las bullets */
   }
 }
 
@@ -550,16 +564,19 @@
   .hero-shot__headline {
     font-size: clamp(18px, 6vw, 24px);
     margin: 0;
+    color: #ECE2C6; /* color arena para el título */
   }
 
   .hero-shot__subheadline {
     font-size: clamp(12px, 4vw, 16px);
     margin: 0;
+    color: #ECE2C6; /* color arena para el subtítulo */
   }
 
   .hero-shot__bullets {
     margin: 0;
     padding: 0;
+    color: #ECE2C6; /* color arena para las bullets */
   }
 }
 
@@ -660,7 +677,7 @@
   height: 50px;
   width: 200px;
   background-color: transparent; /* Fondo transparente */
-  border: 2px solid #ffffff; /* Borde blanco visible */
+  border: 2px solid #e4b017; /* Borde dorado */
   color: #ffffff;
   border-radius: 5px; /* Esquinas redondeadas */
   transition: all 0.3s ease;
@@ -670,7 +687,7 @@
 .hero-shot__buttons button:hover,
 .hero-shot__button-container button:hover {
   background-color: rgba(255, 255, 255, 0.1); /* Ligero fondo blanco al hover */
-  border-color: #ffffff;
+  border-color: #e4b017; /* Mantiene el borde dorado al hover */
   transform: translateY(-2px); /* Efecto de elevación */
 }
 
