@@ -116,17 +116,19 @@ function HeroShot() {
     slide.background?.enabled && slide.background.type === "image"
       ? {
           "--hero-bg-image": resolvedBgUrl ? `url('${resolvedBgUrl}')` : undefined,
-          "--hero-bg-base": slide.background.baseColor || "#0f264d",
+          "--hero-bg-base": slide.background.baseColor || "#181818", // <-- asegúrate que sea #181818
           ...(typeof slide.background.overlay === "string"
             ? { "--hero-bg-overlay": slide.background.overlay }
             : {})
         }
       : slide.background?.enabled && slide.background.type === "color"
       ? {
-          "--hero-bg-color": slide.background.color,
-          "--hero-bg-base": slide.background.color
+          "--hero-bg-color": slide.background.color || "#181818", // <-- fallback a negro
+          "--hero-bg-base": slide.background.color || "#181818"
         }
-      : {};
+      : {
+          "--hero-bg-base": "#181818" // <-- fallback global
+        };
 
   const contentClasses = [
     "hero-shot__content",

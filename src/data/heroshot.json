@@ -42,7 +42,7 @@
       "background": {
         "enabled": true,
         "type": "color",
-        "color": "#0f264d"
+        "color": "#181818"
       },
       "buttonText": "Ver Productos",
       "buttonLink": "/productos",
