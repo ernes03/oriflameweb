@@ -1,6 +1,6 @@
 .footer {
-  background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #081325 100%);
-  color: #ffffff;
+  background: #181818;
+  color: #ECE2C6; /* Cambiado */
   padding: 24px 0;
   text-align: center;
 }
@@ -36,7 +36,7 @@
 }
 
 .footer-nav a {
-  color: #ffffff;
+  color: #ECE2C6; /* Cambiado */
   text-decoration: none;
   margin: 0 12px;
 }
@@ -47,7 +47,7 @@
 
 .footer-info {
   font-size: 0.9em;
-  color: #dce6f7;
+  color: #ECE2C6; /* Cambiado */
 }
 
 .sr-only {
@@ -61,4 +61,3 @@
   white-space: nowrap;
   border: 0;
 }
-  

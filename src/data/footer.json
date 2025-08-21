@@ -1,7 +1,8 @@
 {
   "links": [
     { "label": "Acerca de", "href": "#acerca" },
-    { "label": "Servicios", "href": "#servicios" },
+    { "label": "Productos", "href": "#productos" },
+    { "label": "Catálogos", "href": "#catalogos" },
     { "label": "Contacto", "href": "#contacto" }
   ],
   "copyright": "Oriflame Emma Mora",
