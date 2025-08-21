@@ -1,7 +1,7 @@
 .contact-section {
-  background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #081325 100%);
+  background-color: #181818;
   padding: 60px 0;
-  color: #ffffff;
+  color: #ECE2C6;
 }
 
 .contact-container {
@@ -26,7 +26,7 @@
 
 .contact-desc {
   margin: 0 0 16px 0;
-  color: #dce6f7;
+  color: #ECE2C6;
 }
 
 .contact-form label {
@@ -40,10 +40,11 @@
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1.5px solid #ECE2C6;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  color: #ECE2C6;
+  font-family: inherit;
 }
 
 .contact-form textarea {
@@ -55,17 +56,18 @@
   width: 100%;
   padding: 12px;
   margin-top: 18px;
-  background: #2f80ed;
+  background: transparent;
   color: #fff;
-  border: none;
+  border: 2px solid #e4b017;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .contact-form button:hover {
-  background: #2567bf;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .status-message {
@@ -113,4 +115,23 @@
     max-width: none;
     width: 100%;
   }
+}
+
+@media (min-width: 1021px) {
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea,
+  .contact-form label,
+  .contact-form button,
+  .contact-desc,
+  .contact-form h2 {
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+  }
+}
+
+.contact-background {
+  background-color: #181818;
+  min-height: 100vh;
 }
