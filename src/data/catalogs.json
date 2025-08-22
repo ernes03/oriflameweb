@@ -1,0 +1,8 @@
+{
+  "title": "Catálogos",
+  "image": "/catalogos.jpg",
+  "buttons": [
+    { "label": "Catálogo del mes", "link": "#" },
+    { "label": "Catálogos Anteriores", "link": "#" }
+  ]
+}
