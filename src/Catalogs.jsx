@@ -28,7 +28,7 @@ const Catalogs = () => {
           alignItems: "center"
         }}
       >
-        <h2 style={{ color: "#fff", textAlign: "center", marginBottom: "32px" }}>
+        <h2 style={{ color: "#ECE2C6", textAlign: "center", marginBottom: "32px" }}>
           {catalogsData.title}
         </h2>
         <div
