@@ -1,0 +1,8 @@
+{
+  "title": "Catálogos Exclusivos",
+  "image": "/catalogos.jpg",
+  "buttons": [
+    { "label": "Catálogo de mes", "link": "#" },
+    { "label": "Ver más Catálogos", "link": "#" }
+  ]
+}
