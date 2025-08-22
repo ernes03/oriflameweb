@@ -9,6 +9,7 @@ import HeroShot from './HeroShot';
 import Footer from './Footer';
 import ContactForm from './ContactForm';
 import Carrusel from './Carrusel';
+import Catalogs from './Catalogs';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
     <div className="app-container">
  
       <Carrusel></Carrusel>
+      <Catalogs></Catalogs>
     </div>
     <ContactForm/>
     <Footer/>
