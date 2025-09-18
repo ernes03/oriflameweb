@@ -8,8 +8,8 @@ import reportWebVitals from './reportWebVitals';
 import HeroShot from './HeroShot';
 import Footer from './Footer';
 import ContactForm from './ContactForm';
-import Carrusel from './Carrusel';
 import Catalogs from './Catalogs';
+import ImageSlider from './ImageSlider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,8 +17,7 @@ root.render(
     <NavBar/>
     <HeroShot/>
     <div className="app-container">
- 
-      <Carrusel></Carrusel>
+      <ImageSlider/>
       <Catalogs></Catalogs>
     </div>
     <ContactForm/>
