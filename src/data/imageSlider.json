@@ -1,0 +1,46 @@
+{
+  "slider": {
+    "title": "Descuentos del Mes",
+    "autoPlay": true,
+    "autoPlayInterval": 5000,
+    "showDots": true,
+    "showArrows": true,
+    "images": [
+      {
+        "id": 1,
+        "url": "/Oferta1.png",
+        "title": "Eclat",
+        "description": "20% de descuento",
+        "active": true
+      },
+      {
+        "id": 2,
+        "url": "/Oferta2.png",
+        "title": "Love Potion",
+        "description": "10% de descuento",
+        "active": true
+      },
+      {
+        "id": 3,
+        "url": "/Oferta3.png",
+        "title": "Diamod Cellular",
+        "description": "5% de descuento",
+        "active": true
+      },
+      {
+        "id": 4,
+        "url": "/evangelio4.jpg",
+        "title": "Evangelio 4",
+        "description": "Cuarta lectura del evangelio",
+        "active": false
+      },
+      {
+        "id": 5,
+        "url": "/evangelio5.jpg",
+        "title": "Evangelio 5",
+        "description": "Quinta lectura del evangelio",
+        "active": false
+      }
+    ]
+  }
+}
