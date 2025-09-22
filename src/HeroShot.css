@@ -8,14 +8,14 @@
   position: relative; /* necesario para ::before/::after */
 
   /* Tamaños máximos pensados para pantallas grandes (ajustables) */
-  --hero-image-max-width: clamp(320px, 36vw, 720px);
-  --hero-image-max-height: min(80vh, 800px);
+  --hero-image-max-width: clamp(300px, 38vw, 700px);
+  --hero-image-max-height: min(75vh, 750px);
 
-  /* Altura máxima por defecto (desktop base) */
-  --hero-max-height: 600px;
+  /* Altura máxima por defecto (desktop base) - optimizada para mejor ajuste */
+  --hero-max-height: 580px;
 
-  /* Padding vertical total estimado (para calcular espacio de imagen) */
-  --hero-v-padding: 120px;
+  /* Padding vertical total estimado - reducido para mejor aprovechamiento */
+  --hero-v-padding: 100px;
 
   /* Derivados para imagen dentro del hero */
   --hero-image-max-height: calc(var(--hero-max-height) - var(--hero-v-padding));
@@ -81,10 +81,10 @@
 
 /* El stage es el único que define el ancho y el padding */
 .hero-shot__stage {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  width: 100%;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
   box-sizing: border-box;
   position: relative;
   max-height: inherit;
@@ -117,7 +117,7 @@
 }
 
 /* Centrado y padding responsive del stage */
-@media (max-width: 1020px) {
+@media (max-width: 1024px) {
   .hero-shot__stage { padding-inline: 18px; }
 }
 @media (max-width: 768px) {
@@ -135,11 +135,11 @@
 }
 
 /* Altura fija desktop: el content reserva espacio y no se sale del stage */
-@media (min-width: 1021px) {
+@media (min-width: 1025px) {
   .hero-shot__content {
-    height: 500px;
-    min-height: 500px;
-    max-height: 500px;
+    height: 480px;
+    min-height: 480px;
+    max-height: 480px;
   }
 }
 
@@ -205,9 +205,9 @@
 
 .hero-shot__stage {
   position: relative;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .hero-shot__content {
@@ -215,7 +215,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--hero-gap);
   align-items: center; /* Centra verticalmente el contenido */
-  padding: 60px 20px;
+  padding: 60px 40px;
   min-height: var(--hero-height);
   transition: height 0.3s ease-in-out;
 }
@@ -349,16 +349,16 @@
 }
 
 /* Centrado y padding responsive del stage */
-@media (max-width: 1020px) {
+@media (max-width: 1024px) {
   .hero-shot {
     --hero-height: auto;
-    --hero-image-max-width: 350px;
-    --hero-gap: 30px;
-    --hero-title-gap: 14px;
+    --hero-image-max-width: 380px;
+    --hero-gap: 32px;
+    --hero-title-gap: 16px;
   }
 
   .hero-shot__stage {
-    padding-inline: 18px;
+    padding-inline: 0;
   }
 
   .hero-shot__content {
@@ -368,8 +368,8 @@
       "text";
     justify-items: center;
     min-height: auto;
-    padding: 40px 20px;
-    gap: 30px;
+    padding: 42px 32px;
+    gap: 32px;
   }
 
   .hero-shot__content.is-reversed {
@@ -377,7 +377,7 @@
   }
 
   .hero-shot__content.is-close {
-    gap: 20px;
+    gap: 22px;
   }
 
   .hero-shot__imageWrapper {
@@ -455,23 +455,23 @@
 /* Tablets medianos */
 @media (max-width: 768px) {
   .hero-shot {
-    --hero-gap: 25px;
-    --hero-message-gap: 14px;
-    --hero-image-max-width: 300px;
-    --hero-title-gap: 12px;
+    --hero-gap: 28px;
+    --hero-message-gap: 16px;
+    --hero-image-max-width: 320px;
+    --hero-title-gap: 14px;
   }
 
   .hero-shot__stage {
-    padding-inline: 16px;
+    padding-inline: 0;
   }
 
   .hero-shot__content {
-    padding: 30px 16px;
-    gap: 25px;
+    padding: 32px 22px;
+    gap: 28px;
   }
 
   .hero-shot__content.is-close {
-    gap: 15px;
+    gap: 18px;
   }
 
   .hero-shot__headline {
@@ -494,23 +494,23 @@
 /* Móviles pequeños */
 @media (max-width: 480px) {
   .hero-shot {
-    --hero-gap: 20px;
-    --hero-message-gap: 12px;
-    --hero-image-max-width: 280px;
-    --hero-title-gap: 10px;
+    --hero-gap: 24px;
+    --hero-message-gap: 14px;
+    --hero-image-max-width: 300px;
+    --hero-title-gap: 12px;
   }
 
   .hero-shot__stage {
-    padding-inline: 14px;
+    padding-inline: 0;
   }
 
   .hero-shot__content {
-    padding: 25px 14px;
-    gap: 20px;
+    padding: 28px 18px;
+    gap: 24px;
   }
 
   .hero-shot__content.is-close {
-    gap: 12px;
+    gap: 16px;
   }
 
   .hero-shot__headline {
@@ -721,7 +721,7 @@
 }
 
 /* Breakpoints: ajusta solo la variable, no reglas sueltas */
-@media (max-width: 1020px) {
+@media (max-width: 1024px) {
   .hero-shot { --hero-h-padding: 18px; }
   .hero-shot__content { padding: 40px var(--hero-h-padding); }
 }
@@ -767,27 +767,27 @@
 
 /* Igualar alturas y proporción de imágenes (overrides finales) */
 .hero-shot {
-  --hero-row-height: 560px;         /* altura fija desktop */
+  --hero-row-height: 540px;         /* altura fija desktop - optimizada */
   --hero-image-max-width: 520px;    /* tope ancho imagen */
-  --hero-image-max-height: 380px;   /* tope alto imagen */
+  --hero-image-max-height: 360px;   /* tope alto imagen - reducido */
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1024px) {
   .hero-shot {
-    --hero-row-height: 440px;
-    --hero-image-max-height: 320px;
+    --hero-row-height: 420px;
+    --hero-image-max-height: 300px;
   }
 }
 @media (max-width: 768px) {
   .hero-shot {
-    --hero-row-height: 380px;
-    --hero-image-max-height: 280px;
+    --hero-row-height: 360px;
+    --hero-image-max-height: 260px;
   }
 }
 @media (max-width: 480px) {
   .hero-shot {
-    --hero-row-height: 340px;
-    --hero-image-max-height: 240px;
+    --hero-row-height: 320px;
+    --hero-image-max-height: 220px;
   }
 }
 
@@ -941,8 +941,8 @@
 .hero-shot__buttons.position-center { justify-content: center; }
 .hero-shot__buttons.position-right { justify-content: flex-end; }
 
-/* Responsive fixes: <= 1020px (tablets y móviles grandes) */
-@media (max-width: 1020px) {
+/* Responsive fixes: <= 1024px (tablets y móviles grandes) */
+@media (max-width: 1024px) {
   .hero-shot {
     --hero-row-height: auto;            /* sin altura fija */
     --hero-no-image-height: 320px;      /* placeholder cuando no hay imagen */
@@ -1031,8 +1031,8 @@
   }
 }
 
-/* Forzar CENTRO < 1021px para cualquier botón (texto o imagen) */
-@media (max-width: 1020px) {
+/* Forzar CENTRO < 1025px para cualquier botón (texto o imagen) */
+@media (max-width: 1024px) {
   .hero-shot__buttons,
   .hero-shot__buttons.in-text,
   .hero-shot__buttons.in-image,
