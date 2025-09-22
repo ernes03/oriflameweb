@@ -1,0 +1,24 @@
+{
+  "title": "Síguenos en redes sociales",
+  "facebook": {
+    "url": "https://www.facebook.com/tuPagina",
+    "label": "Facebook",
+    "icon": "facebook",
+    "target": "_blank",
+    "enabled": true
+  },
+  "whatsapp": {
+    "phoneNumber": "1234567890",
+    "countryCode": "52",
+    "message": "¡Hola! Me interesa conocer más sobre sus servicios.",
+    "label": "WhatsApp",
+    "icon": "whatsapp",
+    "enabled": true
+  },
+  "settings": {
+    "showTitle": true,
+    "buttonStyle": "floating",
+    "position": "bottom-right",
+    "spacing": "medium"
+  }
+}

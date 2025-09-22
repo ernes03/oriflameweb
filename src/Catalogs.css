@@ -2,31 +2,15 @@
     display: flex;
     width: 100%;
     max-width: 1600px;
-    height: 430px;
+    height: 600px;
     margin: 24px auto;
     background: #000;
+    box-sizing: border-box;
 }
 
-@media (max-width: 460px) {
-  .catalogsContainer {
-    margin: 15px 0;
-    height: 250px;
-    width: 100vw;
-    max-width: none;
-  }
-  .catalogsContainer h2 {
-    font-size: 1.2rem;
-    padding: 0 8px;
-    word-break: break-word;
-    text-align: center;
-    line-height: 1.2;
-  }
-}
-
-@media (max-width: 600px) {
-  .catalogsContainer > div {
-    padding: 16px !important;
-  }
+.catalogsContainer > div {
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .catalogsButtons {
@@ -34,34 +18,83 @@
   gap: 24px;
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1025px) {
   .catalogsButtons {
     gap: 64px;
     flex-direction: row;
   }
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1024px) {
   .catalogsContainer {
+    height: 600px !important;
+    min-height: 600px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center; /* Centra el contenido, incluido el título */
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  .catalogsContainer > div {
+    max-width: calc(100% - 40px);
+    width: 100%;
   }
   .catalogsContainer h2 {
-    text-align: center; /* Centra el título */
+    text-align: center;
     width: 100%;
   }
   .catalogsButtons {
     flex-direction: column;
     gap: 24px;
     align-items: center;
-    justify-content: center; /* Centra los botones */
+    justify-content: center;
     width: 100%;
   }
   .catalogsButtons a {
     width: 90%;
     max-width: 320px;
     min-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalogsContainer {
+    height: 600px !important;
+    min-height: 600px;
+    margin: 32px auto;
+    padding: 32px 16px;
+    box-sizing: border-box;
+  }
+  .catalogsContainer > div {
+    padding: 20px !important;
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalogsContainer {
+    margin: 24px auto;
+    height: 480px !important;
+    min-height: 480px;
+    width: 100vw;
+    max-width: none;
+    padding: 24px 12px;
+    box-sizing: border-box;
+  }
+  .catalogsContainer > div {
+    padding: 16px !important;
+    margin: 0 auto;
+    max-width: calc(100vw - 24px);
+    width: 100%;
+  }
+  .catalogsContainer h2 {
+    font-size: 1.2rem;
+    padding: 0 8px;
+    word-break: break-word;
+    text-align: center;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
   }
 }

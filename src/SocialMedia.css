@@ -1,0 +1,351 @@
+/* Contenedor principal de redes sociales */
+.social-media-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+  padding: 20px;
+  background: rgba(24, 24, 24, 0.8);
+  border-radius: 12px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+/* Fondo transparente cuando está cerrado */
+.social-media-container.closed {
+  background: transparent;
+  padding: 40px 25px 20px 20px; /* Aumentado padding derecho */
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.social-media-container.closed .social-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* El botón toggle siempre visible */
+.social-media-container.closed .toggle-button {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Botón toggle para mostrar/ocultar */
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e4b017;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #181818;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.toggle-button:hover {
+  background: #f4c430;
+  transform: scale(1.1);
+}
+
+.toggle-button:active {
+  transform: scale(0.95);
+}
+
+/* Contenido que se muestra/oculta */
+.social-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.social-media-container.floating {
+  position: fixed;
+  z-index: 1000;
+  background: rgba(24, 24, 24, 0.8);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.social-media-container.floating.closed {
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.social-media-container.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.social-media-container.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+/* Título */
+.social-media-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ece2c6;
+  margin: 15px 0 16px 0;
+  text-align: center;
+}
+
+/* Contenedor de botones */
+.social-media-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-media-buttons.spacing-small {
+  gap: 8px;
+}
+
+.social-media-buttons.spacing-medium {
+  gap: 12px;
+}
+
+.social-media-buttons.spacing-large {
+  gap: 20px;
+}
+
+/* Botones base */
+.social-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.social-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-button:active {
+  transform: translateY(0);
+}
+
+/* Botón de Facebook */
+.facebook-button {
+  background: linear-gradient(135deg, #1877f2 0%, #165ecd 100%);
+}
+
+.facebook-button:hover {
+  background: linear-gradient(135deg, #166fe5 0%, #1456b8 100%);
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+}
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+  background: linear-gradient(135deg, #25d366 0%, #20b358 100%);
+}
+
+.whatsapp-button:hover {
+  background: linear-gradient(135deg, #22c55e 0%, #16a085 100%);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* Iconos y etiquetas */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.social-button:hover .social-icon svg {
+  transform: scale(1.1);
+}
+
+.social-label {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Efectos con color dorado del proyecto */
+.social-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #e4b017, #f4c430);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.social-button:focus {
+  outline: 2px solid #e4b017;
+  outline-offset: 2px;
+}
+
+/* Versión flotante responsive */
+@media (max-width: 1024px) {
+  .toggle-button {
+    top: 5px;
+    right: 9px;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-media-container.floating {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    left: 10px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 12px;
+    margin: 0;
+  }
+  
+  .social-media-container.floating.closed {
+    left: auto;
+    right: 15px;
+    width: auto;
+    padding: 8px 15px 8px 8px;
+  }
+  
+  .toggle-button {
+    top: 2px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  
+  .social-media-title {
+    display: none;
+  }
+  
+  .social-button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .social-label {
+    display: none;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .social-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Versión estática responsive */
+@media (max-width: 480px) {
+  .social-media-container:not(.floating) {
+    margin: 16px 0;
+    padding: 16px;
+  }
+  
+  .social-media-container.floating {
+    bottom: 25px;
+  }
+  
+  .social-media-container.floating.closed {
+    right: 20px;
+    padding: 8px 20px 8px 8px;
+    bottom: 25px;
+  }
+  
+  .toggle-button {
+    top: 0px;
+    right: 15px;
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
+  }
+  
+  .social-media-title {
+    font-size: 1.3rem;
+  }
+  
+  .social-media-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .social-button {
+    justify-content: center;
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+/* Animación de entrada */
+.social-media-container {
+  animation: socialMediaFadeIn 0.5s ease-out;
+}
+
+@keyframes socialMediaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estados de accesibilidad */
+.social-button:focus-visible {
+  outline: 2px solid #e4b017;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-button,
+  .social-media-container {
+    animation: none;
+    transition: none;
+  }
+  
+  .social-button:hover {
+    transform: none;
+  }
+}
