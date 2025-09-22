@@ -10,6 +10,8 @@ import Footer from './Footer';
 import ContactForm from './ContactForm';
 import Catalogs from './Catalogs';
 import ImageSlider from './ImageSlider';
+import SocialMedia from './SocialMedia';
+import AboutQuote from './AboutQuote';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,8 +19,10 @@ root.render(
     <NavBar/>
     <HeroShot/>
     <div className="app-container">
+       <AboutQuote/>
       <ImageSlider/>
       <Catalogs></Catalogs>
+      <SocialMedia/>
     </div>
     <ContactForm/>
     <Footer/>
