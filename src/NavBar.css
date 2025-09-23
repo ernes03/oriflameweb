@@ -6,7 +6,7 @@
   background: #181818;
   color: #ffffff;
   z-index: 100;
-  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -27,6 +27,10 @@
   .navbar__container {
     padding: 12px 16px;
   }
+  
+  .navbar__brand img {
+    height: 110px !important; /* Tamaño intermedio para tablets */
+  }
 }
 
 @media (max-width: 480px) {
@@ -37,7 +41,7 @@
 
 @media (max-width: 460px) {
   .navbar__container {
-    padding: 8px 10px;
+    padding: 16px 10px 0 10px; /* Solo padding arriba, sin padding bottom */
     width: 100%;
     max-width: none;
   }
@@ -46,8 +50,20 @@
     font-size: 16px;
   }
   
+  .navbar__brand img {
+    height: 70px !important; /* Logo aún más pequeño en móviles pequeños */
+  }
+  
+  .hamburger {
+    top: 18px; /* Ajustado para el nuevo padding */
+    right: 12px;
+  }
+  
   .navbar__links {
-    gap: 12px;
+    top: 100px; /* Ajuste para móviles pequeños */
+    height: calc(100vh - 100px);
+    gap: 20px;
+    width: 200px;
   }
 }
 
@@ -98,14 +114,36 @@
 }
 
 @media (max-width: 1020px) {
+  .navbar__container {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px; /* Padding adicional arriba */
+  }
+  
+  .navbar__brand {
+    order: -1; /* Logo arriba */
+    margin-bottom: 8px;
+  }
+  
+  .navbar__brand img {
+    height: 130px !important; /* Logo más pequeño en móvil */
+    width: auto;
+  }
+  
+  .hamburger {
+    position: absolute;
+    top: 24px; /* Ajustado para el padding-top de 20px */
+    right: 16px;
+  }
+  
   .navbar__links {
     position: fixed;
-    top: 60px;
+    top: 120px; /* Ajustado para dar espacio al logo */
     right: -100%;
     flex-direction: column;
     background: #181818;
     width: 220px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 120px);
     gap: 24px;
     padding: 32px 0;
     transition: right 0.3s ease;
