@@ -30,9 +30,9 @@ const Navbar = () => {
       <div className="navbar__container">
         <div className="navbar__brand">
           <img
-            src={process.env.PUBLIC_URL + '/logo.png'}
+            src={process.env.PUBLIC_URL + '/logovertical.png'}
             alt="Emma Mora Oriflame"
-            style={{ height: 40, width: 'auto', display: 'block' }}
+            style={{ height: 130, width: 'auto', display: 'block' }}
           />
         </div>
         <div
