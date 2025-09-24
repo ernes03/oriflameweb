@@ -17,14 +17,28 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <NavBar/>
-    <HeroShot/>
-    <div className="app-container">
-       <AboutQuote/>
-      <ImageSlider/>
-      <Catalogs></Catalogs>
-      <SocialMedia/>
-    </div>
-    <ContactForm/>
+    <main>
+      <section id="inicio">
+        <HeroShot/>
+      </section>
+      <div className="app-container">
+        <section id="acerca">
+          <AboutQuote/>
+        </section>
+        <section id="productos">
+          <ImageSlider/>
+        </section>
+        <section id="catalogos">
+          <Catalogs/>
+        </section>
+        <section id="redes">
+          <SocialMedia/>
+        </section>
+      </div>
+      <section id="contacto">
+        <ContactForm/>
+      </section>
+    </main>
     <Footer/>
   </React.StrictMode>
 );

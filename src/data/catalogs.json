@@ -2,7 +2,7 @@
   "title": "Catálogos",
   "image": "/catalogos.jpg",
   "buttons": [
-    { "label": "Catálogo del mes", "link": "/2025-SETIEMBRECR.pdf" },
+    { "label": "Catálogo de Octubre", "link": "/2025-OCTUBRECR.pdf"},
     { "label": "Catálogos Anteriores", "link": "#" }
   ]
 }
