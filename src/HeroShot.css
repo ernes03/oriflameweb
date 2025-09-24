@@ -1,3 +1,25 @@
+/* Ajuste específico para el HeroShot 'Productos que inspiran confianza' */
+.hero-shot--productos-inspiran .hero-shot__imageWrapper {
+  margin-bottom: 38px;
+  margin-top: 0;
+}
+.hero-shot--productos-inspiran .hero-shot__buttons {
+  margin-top: 38px;
+}
+
+@media (max-width: 1024px) {
+  .hero-shot--productos-inspiran .hero-shot__content {
+    justify-content: flex-start;
+    padding-top: 24px;
+  }
+  .hero-shot--productos-inspiran .hero-shot__imageWrapper {
+    margin-bottom: 38px;
+    margin-top: 0;
+  }
+  .hero-shot--productos-inspiran .hero-shot__buttons {
+    margin-top: 38px;
+  }
+}
 .hero-shot {
   width: 100%;
   /*background: linear-gradient(90deg, #081325 0%, #0f264d 50%, #1a3a5c 100%);*/
@@ -117,6 +139,41 @@
 }
 
 /* Centrado y padding responsive del stage */
+/* Separación vertical universal para todos los HeroShot */
+.hero-shot__imageWrapper {
+  margin-bottom: var(--hero-v-gap, 32px);
+}
+.hero-shot__messages {
+  margin-bottom: var(--hero-v-gap-small, 18px);
+}
+.hero-shot__buttons {
+  margin-top: var(--hero-v-gap, 32px);
+}
+
+:root {
+  --hero-v-gap: 48px;
+  --hero-v-gap-small: 28px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --hero-v-gap: 36px;
+    --hero-v-gap-small: 18px;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --hero-v-gap: 28px;
+    --hero-v-gap-small: 14px;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --hero-v-gap: 20px;
+    --hero-v-gap-small: 10px;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-shot__stage { padding-inline: 18px; }
 }
@@ -322,11 +379,35 @@
   display: block;
   width: 100%;
   height: auto;
-  max-width: 520px;
+  max-width: var(--hero-image-max-width, 520px);
   max-height: var(--hero-image-max-height, 420px);
   object-fit: contain;
   border-radius: var(--hero-image-radius, 10px); /* asegura el redondeo */
   box-shadow: var(--hero-image-shadow, 0 10px 24px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.16));
+}
+
+:root {
+  --hero-image-max-width: 520px;
+  --hero-image-max-height: 420px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --hero-image-max-width: 440px;
+    --hero-image-max-height: 370px;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --hero-image-max-width: 340px;
+    --hero-image-max-height: 260px;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --hero-image-max-width: 220px;
+    --hero-image-max-height: 140px;
+  }
 }
 
 /* Tipografías con márgenes uniformes */
@@ -351,29 +432,53 @@
 /* Centrado y padding responsive del stage */
 @media (max-width: 1024px) {
   .hero-shot {
-    --hero-height: auto;
+    --hero-height: 100vh;
     --hero-image-max-width: 380px;
     --hero-gap: 32px;
     --hero-title-gap: 16px;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-shot__stage {
     padding-inline: 0;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-shot__content {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "image"
-      "text";
-    justify-items: center;
-    min-height: auto;
-    padding: 42px 32px;
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 64px 10px 0 10px;
+    gap: 0;
+    box-sizing: border-box;
   }
 
-  .hero-shot__content.is-reversed {
-    grid-template-columns: 1fr;
+  /* Espaciado vertical entre bloques principales */
+  .hero-shot__imageWrapper {
+    margin-bottom: 28px;
+  }
+  .hero-shot__messages {
+    margin-bottom: 10px;
+  }
+  .hero-shot__buttons {
+    margin-top: 28px;
+  }
+ 
+  .hero-shot__content.is-reversed,
+  .hero-shot__content.is-imageTop {
+    flex-direction: column;
   }
 
   .hero-shot__content.is-close {
@@ -384,6 +489,9 @@
     justify-content: center;
     height: auto;
     order: -1; /* Imagen siempre arriba en móvil */
+    width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   /* Centrado completo en móvil */
@@ -391,6 +499,9 @@
     text-align: center !important;
     align-items: center !important; /* Centra los elementos flex */
     flex-direction: column; /* Cambia a columna en móvil */
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-shot__text-container {
@@ -424,6 +535,7 @@
   .hero-shot__button-container {
     justify-content: center; /* Centra el contenedor de botones */
     width: 100%;
+    display: flex;
   }
   
   /* Posiciones específicas en móvil - ahora funcionan correctamente */

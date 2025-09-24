@@ -1,6 +1,7 @@
 {
   "links": [
-    { "label": "Acerca de", "href": "#acerca" },
+    { "label": "Inicio", "href": "#inicio" },
+    { "label": "Conózcanos", "href": "#acerca" },
     { "label": "Productos", "href": "#productos" },
     { "label": "Catálogos", "href": "#catalogos" },
     { "label": "Contacto", "href": "#contacto" }

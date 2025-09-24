@@ -1,9 +1,17 @@
+/* Línea decorativa debajo de Equipo Oriflame */
+.about-quote-divider {
+  border: none;
+  border-top: 2px solid #181818;
+  margin: 32px auto 0 auto;
+  width: 80px;
+  display: block;
+}
 /* Contenedor principal */
 .about-quote-container {
   margin: 48px 0;
   padding: 40px 20px;
-  background: rgba(24, 24, 24, 0.8);
-  border-radius: 16px;
+  /*background: rgba(24, 24, 24, 0.8);*/
+  /*border-radius: 16px;*/
   position: relative;
   overflow: hidden;
   height: 530px;
@@ -74,7 +82,7 @@
 .about-quote p {
   font-size: 1.4rem;
   line-height: 1.7;
-  color: #ece2c6;
+  color: #181818;
   font-style: italic;
   margin-bottom: 20px;
   text-align: left;
@@ -107,7 +115,7 @@
 }
 
 .author-position {
-  color: #ece2c6;
+  color: #181818;
   font-weight: 400;
   opacity: 0.9;
 }

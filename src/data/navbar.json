@@ -2,9 +2,9 @@
   "brand": "Oriflame Emma Mora",
   "links": [
     { "label": "Inicio", "href": "#inicio" },
-    { "label": "Acerca de", "href": "#acerca" },
+    { "label": "Conózcanos", "href": "#acerca" },
     { "label": "Productos", "href": "#productos" },
-    { "label": "Catalogos", "href": "#catalogos" },
+    { "label": "Catálogos", "href": "#catalogos" },
     { "label": "Contacto", "href": "#contacto" }
   ]
 }
