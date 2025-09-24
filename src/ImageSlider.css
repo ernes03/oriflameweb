@@ -21,6 +21,8 @@
   color: #333;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: 18px;
+  padding-bottom: 32px;
 }
 
 /* Contenedor principal del slider */
