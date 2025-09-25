@@ -1,6 +1,12 @@
 main {
   padding-top: 100px;
 }
+
+@media (max-width: 460px) {
+  main {
+    padding-top: 60px;
+  }
+}
 /* Asegura que el scroll ancle el inicio de cada sección visible bajo el navbar */
 section[id] {
   scroll-margin-top: 90px;
