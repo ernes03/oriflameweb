@@ -1,6 +1,17 @@
+@media (max-width: 460px) {
+  .navbar__brand img {
+    height: 80px !important;
+    max-height: 80px !important;
+    width: auto !important;
+  }
+}
 @media (min-width: 1025px) {
   .navbar__container {
     padding: 6px 32px;
+  }
+  .navbar__links {
+    margin-right: 32px;
+    padding-right: 32px;
   }
   .navbar__brand img {
     height: 80px !important;
@@ -42,8 +53,8 @@
 }
 
 @media (max-width: 480px) {
-  .navbar__container {
-    padding: 12px 14px;
+  .navbar__brand img {
+    height: 40px !important; /* Logo aún más pequeño en móviles muy pequeños */
   }
 }
 
