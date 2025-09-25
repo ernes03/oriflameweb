@@ -194,9 +194,9 @@
 /* Altura fija desktop: el content reserva espacio y no se sale del stage */
 @media (min-width: 1025px) {
   .hero-shot__content {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    min-height: 600px;
+    height: auto;
+    max-height: none;
   }
 }
 
