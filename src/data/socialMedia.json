@@ -1,15 +1,15 @@
 {
   "title": "Síguenos en redes sociales",
   "facebook": {
-    "url": "https://www.facebook.com/tuPagina",
+    "url": "https://www.facebook.com/oriflame.guapiles.5?locale=es_LA",
     "label": "Facebook",
     "icon": "facebook",
     "target": "_blank",
     "enabled": true
   },
   "whatsapp": {
-    "phoneNumber": "1234567890",
-    "countryCode": "52",
+    "phoneNumber": "60786196",
+    "countryCode": "506",
     "message": "¡Hola! Me interesa conocer más sobre sus servicios.",
     "label": "WhatsApp",
     "icon": "whatsapp",
