@@ -12,7 +12,10 @@ function ContactForm() {
   const [statusMessage, setStatusMessage] = useState('');
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -20,7 +23,7 @@ function ContactForm() {
 
     try {
       await emailjs.send(
-        'service_ov5y18m',          // Reemplaza con tu service_id
+        'service_4kctz2s',          // Reemplaza con tu service_id
         'template_60ncqni',         // Reemplaza con tu template_id
         formData,
         'cMNawYjh7oKhgNyrK'         // Reemplaza con tu Public Key
