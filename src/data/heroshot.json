@@ -5,7 +5,7 @@
       "headlineEnable": true,
       "subheadline": "Sé parte de una comunidad que impulsa bienestar y belleza",
       "subheadlineEnable": false,
-      "imageUrl": "HeroImage1.jpg",
+      "imageUrl": "/logo-oriflame.jpg",
       "imageUrlEnable": true,
       "imageAlt": "Mujer sonriente de medio cuerpo a la derecha",
       "bullets": { "enable": false },
@@ -17,7 +17,7 @@
       "background": {
         "enabled": true,
         "type": "image",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",
+        "imageUrl": "/diamond.jpg",
         "overlay": "linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45))"
       },
       "buttonText": "Comenzar Ahora",
@@ -29,9 +29,9 @@
       "headlineEnable": true,
       "subheadline": "Belleza responsable con estándares europeos",
       "subheadlineEnable": false,
-      "imageUrl": "media/HeroImage2.jpg",
+      "imageUrl": "/Royal_Velvet.jpg",
       "imageUrlEnable": true,
-      "imageAlt": "Mujer sosteniendo productos de belleza",
+      "imageAlt": "Producto Royal Velvet con fondo oscuro",
       "reverse": true,
       "bullets": { "enable": true },
       "messages": [
@@ -44,8 +44,8 @@
         "type": "color",
         "color": "#181818"
       },
-      "buttonText": "Ver Productos",
-      "buttonLink": "/productos",
+  "buttonText": "Ver Productos",
+  "buttonLink": "#productos",
       "button": { "enable": true, "area": "image", "position": "center" }
     },
     {
@@ -53,7 +53,7 @@
       "headlineEnable": true,
       "subheadline": "Entrenamiento y acompañamiento en cada etapa",
       "subheadlineEnable": true,
-      "imageUrl": "media/HeroImage3.jpg",
+      "imageUrl": "/oriflame_documento.png",
       "imageUrlEnable": true,
       "imageAlt": "Mujer con actitud segura mirando al frente",
       "bullets": { "enable": true },
@@ -63,8 +63,8 @@
         "Crecimiento personal y profesional"
       ],
       "background": { "enabled": false },
-      "buttonText": "Unirse al Equipo",
-      "buttonLink": "https://oriflameweb.vercel.app/",
+  "buttonText": "Unirse al Equipo",
+  "buttonLink": "https://wa.me/50660786196?text=%C2%A1Hola!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios.",
       "button": { "enable": true, "area": "text", "position": "left" }
     }
   ]

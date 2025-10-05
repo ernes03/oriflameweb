@@ -23,7 +23,6 @@ const AboutQuote = () => {
                   {author}
                   {position && <span className="author-position">, {position}</span>}
                 </cite>
-                <hr className="about-quote-divider" />
               </footer>
             )}
           </blockquote>
