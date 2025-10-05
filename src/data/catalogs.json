@@ -1,6 +1,6 @@
 {
   "title": "Catálogos",
-  "image": "/catalogos.jpg",
+  "image": "/catalogo.png",
   "buttons": [
     { "label": "Catálogo de Octubre", "link": "/2025-OCTUBRECR.pdf"},
     { "label": "Catálogos Anteriores", "link": "#" }

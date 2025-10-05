@@ -15,17 +15,35 @@ const Catalogs = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        position: "relative"
+        position: "relative",
+        overflow: "hidden"
       }}
     >
+      {/* Overlay semitransparente para fondo */}
+      <div
+        className="catalogs-overlay"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          minWidth: "100%",
+          height: "100%",
+          background: "rgba(24,24,24,0.40)",
+          zIndex: 0,
+          pointerEvents: "none"
+        }}
+      />
       <div
         style={{
-          background: "rgba(0,0,0,0.45)", // Más transparente
+          background: "rgba(0,0,0,0.45)",
           padding: "40px",
           borderRadius: "12px",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          position: "relative",
+          zIndex: 1
         }}
       >
         <h2 style={{ color: "#ECE2C6", textAlign: "center", marginBottom: "32px" }}>
