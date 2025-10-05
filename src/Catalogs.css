@@ -1,3 +1,13 @@
+@media (max-width: 1024px) {
+  .catalogs-overlay {
+    width: 100vw !important;
+    min-width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    height: 100% !important;
+  }
+}
 .catalogsContainer {
     display: flex;
     width: 100%;
