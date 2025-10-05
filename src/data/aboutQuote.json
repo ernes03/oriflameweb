@@ -1,10 +1,10 @@
 {
   "title": "Conózcanos",
-  "quote": "Nuestra misión es brindar productos de la más alta calidad, manteniendo la tradición y excelencia que nos ha caracterizado por años. Creemos en la importancia de conocer a nuestros clientes y ofrecerles una experiencia única y personalizada.",
+  "quote": "Hola, soy Emma Mora, desde Costa Rica. Soy educadora pensionada, actualmente soy una socia de Oriflame, con pasión por ayudar a las personas a mejorar su bienestar, salud y belleza. Hoy formo parte de una empresa sueca reconocida internacionalmente, dedicada al bienestar y cuidado personal para toda la familia. Su filosofía combina ciencia, naturaleza y estilo de vida saludable, ofreciendo productos de alta calidad, respaldados por años de investigación.",
   "image": {
-    "src": "/logo.png",
+    "src": "/EmmaMora.jpeg",
     "alt": "Imagen representativa de nuestra empresa"
   },
-  "author": "Equipo Oriflame",
-  "position": "Fundadores"
+  "author": "Emma Mora",
+  "position": "Socia"
 }

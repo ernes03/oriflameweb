@@ -195,7 +195,7 @@
 }
 
 .dot-button.active {
-  border-color: #e4b017;
+  border-color: #181818;
   transform: scale(1.15);
   box-shadow: 0 0 20px rgba(228, 176, 23, 0.4);
 }
