@@ -22,15 +22,19 @@
 
 .contact-form h2 {
   margin: 0 0 6px 0;
+  font-family: 'Faculty Glyphic', 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
 }
 
 .contact-desc {
   margin: 0 0 16px 0;
   color: #ECE2C6;
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
 }
 
 .contact-form label {
   margin-top: 10px;
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
+
   font-weight: 600;
 }
 
@@ -44,7 +48,7 @@
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   color: #ECE2C6;
-  font-family: inherit;
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
 }
 
 .contact-form textarea {
@@ -64,6 +68,7 @@
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
 }
 
 .contact-form button:hover {

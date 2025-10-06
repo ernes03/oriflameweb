@@ -51,8 +51,11 @@
     width: 100%;
   }
   .catalogsContainer h2 {
-    text-align: center;
-    width: 100%;
+  color: rgb(236, 226, 198);
+  text-align: center;
+  margin-bottom: 32px;
+  width: 100%;
+  font-family: 'Faculty Glyphic', 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
   }
   .catalogsButtons {
     flex-direction: column;
@@ -62,9 +65,11 @@
     width: 100%;
   }
   .catalogsButtons a {
-    width: 90%;
-    max-width: 320px;
-    min-width: 180px;
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
+  width: 90%;
+  max-width: 320px;
+  min-width: 180px;
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
   }
 }
 

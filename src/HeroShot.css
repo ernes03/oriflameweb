@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Faculty Glyphic';
+  src: url('../public/FacultyGlyphic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 /* Ajuste específico para el HeroShot 'Productos que inspiran confianza' */
 .hero-shot--productos-inspiran .hero-shot__imageWrapper {
   margin-bottom: 38px;
@@ -242,6 +248,7 @@
 }
 
 .hero-shot__text-container {
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   gap: var(--hero-message-gap);
@@ -334,6 +341,7 @@
 }
 
 .hero-shot__subheadline {
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
   margin: 0;
   font-size: clamp(16px, 2.5vw, 20px);
   color: #ECE2C6; /* color arena para el subtítulo */
@@ -415,6 +423,8 @@
   margin: 0 0 8px;
   line-height: 1.15;
   color: #ECE2C6; /* color arena para el título */
+  font-family: 'Faculty Glyphic', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: 300;
 }
 .hero-shot__subheadline {
   margin: 0 0 16px;
@@ -786,6 +796,7 @@
 /* Dimensiones específicas para los botones del hero shot */
 .hero-shot__buttons button,
 .hero-shot__button-container button {
+  font-family: 'Urbanist', 'Segoe UI', 'Arial', sans-serif;
   height: 50px;
   width: 200px;
   background-color: transparent; /* Fondo transparente */
