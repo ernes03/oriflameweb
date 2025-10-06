@@ -73,7 +73,8 @@ const Catalogs = () => {
                 textAlign: "center",
                 transition: "all 0.2s",
                 cursor: "pointer",
-                display: "inline-block"
+                display: "inline-block",
+                fontFamily: "Urbanist, 'Segoe UI', Arial, sans-serif"
               }}
               onMouseOver={e => {
                 e.currentTarget.style.background = "rgba(0, 0, 0, 0.18)"; // dorado con opacidad
