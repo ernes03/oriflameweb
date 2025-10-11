@@ -254,7 +254,7 @@ function HeroShot() {
             <div className="hero-shot__text-container">
               <div className="hero-shot__title-section">
                 {isHeadlineEnabled && headlineText && (
-                  <h2 className="hero-shot__headline">{headlineText}</h2>
+                  <h1 className="hero-shot__headline">{headlineText}</h1>
                 )}
                 {isSubheadlineEnabled && subheadlineText && (
                   <p className="hero-shot__subheadline">{subheadlineText}</p>
