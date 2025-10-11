@@ -9,6 +9,20 @@
   })(window,document,'script','dataLayer','GTM-NMS4VG63');</script>
   <!-- End Google Tag Manager -->
   
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4RQHTL2LZP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4RQHTL2LZP', {
+      page_title: 'Emma Mora Oriflame',
+      page_location: window.location.href,
+      custom_map: {'custom_parameter_1': 'oriflame_consultant'}
+    });
+  </script>
+  <!-- End Google Analytics 4 -->
+  
   <meta charset="utf-8" />
   <link rel="stylesheet" href="%PUBLIC_URL%/fonts.css" />
   <link rel="icon" href="%PUBLIC_URL%/logovertical.png" />
@@ -113,6 +127,12 @@
     
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
+    <!-- Google Analytics 4 Events -->
+    <script src="%PUBLIC_URL%/ga4-events.js"></script>
+    <script src="%PUBLIC_URL%/oriflame-analytics.js"></script>
+    <script src="%PUBLIC_URL%/oriflame-ecommerce.js"></script>
+    
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
