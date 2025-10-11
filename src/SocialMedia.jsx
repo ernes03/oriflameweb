@@ -78,7 +78,7 @@ const SocialMedia = () => {
       {isVisible && (
         <div className="social-content">
           {settings.showTitle && (
-            <h3 className="social-media-title">{title}</h3>
+            <h2 className="social-media-title">{title}</h2>
           )}
           
           <div className={`social-media-buttons spacing-${settings.spacing}`}>
