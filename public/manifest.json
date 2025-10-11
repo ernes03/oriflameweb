@@ -1,25 +1,26 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Emma Mora Oriflame",
+  "name": "Emma Mora Oriflame - Productos de Belleza",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logovertical.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "logovertical.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logovertical.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#d4af37",
+  "background_color": "#ffffff",
+  "description": "Emma Mora - Consultora Oriflame especializada en productos de belleza y cuidado personal"
 }
