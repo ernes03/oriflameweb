@@ -7,16 +7,11 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Solo usar StrictMode en desarrollo, no en producción para evitar doble renderizado
-const app = process.env.NODE_ENV === 'development' ? (
+root.render(
   <React.StrictMode>
     <AppWrapper />
   </React.StrictMode>
-) : (
-  <AppWrapper />
 );
-
-root.render(app);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
