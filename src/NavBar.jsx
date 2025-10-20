@@ -9,26 +9,33 @@ const Navbar = () => {
   useEffect(() => {
     let timeoutId;
     let lastScrollTop = 0;
+    let isScrolling = false;
     
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       
-      // Solo actualizar si hay un cambio significativo
-      if (Math.abs(scrollTop - lastScrollTop) < 5) return;
+      // Solo actualizar si hay un cambio significativo (aumentado threshold)
+      if (Math.abs(scrollTop - lastScrollTop) < 15) return;
+      
+      // Evitar múltiples timeouts consecutivos
+      if (isScrolling) return;
+      isScrolling = true;
       
       clearTimeout(timeoutId);
       
       timeoutId = setTimeout(() => {
-        const shouldBeScrolled = scrollTop > 20;
+        const shouldBeScrolled = scrollTop > 50; // Aumentado threshold
         setIsScrolled(prevScrolled => {
           // Solo actualizar si realmente cambió el estado
           if (prevScrolled !== shouldBeScrolled) {
             lastScrollTop = scrollTop;
+            isScrolling = false;
             return shouldBeScrolled;
           }
+          isScrolling = false;
           return prevScrolled;
         });
-      }, 100); // Aumentado a 100ms para menos actualizaciones
+      }, 200); // Aumentado delay significativamente
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
