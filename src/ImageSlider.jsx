@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 import './ImageSlider.css';
 import sliderData from './data/imageSlider.json';
 
@@ -142,6 +142,8 @@ const ImageSlider = () => {
                 src={image.url} 
                 alt={image.title}
                 className="slide-image"
+                loading="lazy"
+                decoding="async"
               />
               <div className="slide-overlay">
                 <h3 className="slide-title">{image.title}</h3>
@@ -194,4 +196,4 @@ const ImageSlider = () => {
   );
 };
 
-export default ImageSlider;
+export default memo(ImageSlider);

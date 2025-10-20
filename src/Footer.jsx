@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './Footer.css';
 import data from './data/footer.json';
 import socialMediaData from './data/socialMedia.json';
@@ -83,4 +83,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

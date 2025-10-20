@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import slidesData from "./data/heroshot.json";
 import "./HeroShot.css";
 
@@ -283,6 +283,6 @@ function HeroShot() {
   );
 }
 
-export default HeroShot;
+export default memo(HeroShot);
 
 
