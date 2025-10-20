@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './AboutQuote.css';
 import aboutQuoteData from './data/aboutQuote.json';
 
@@ -9,7 +9,7 @@ const AboutQuote = () => {
     <section className="about-quote-container">
       <div className="about-quote-content">
         <div className="about-quote-image">
-          <img src={image.src} alt={image.alt} />
+          <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
         </div>
         
         <div className="about-quote-text">
@@ -32,4 +32,4 @@ const AboutQuote = () => {
   );
 };
 
-export default AboutQuote;
+export default memo(AboutQuote);

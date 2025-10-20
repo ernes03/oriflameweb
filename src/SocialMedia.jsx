@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import './SocialMedia.css';
 import socialMediaData from './data/socialMedia.json';
 
@@ -110,4 +110,4 @@ const SocialMedia = () => {
   );
 };
 
-export default SocialMedia;
+export default memo(SocialMedia);

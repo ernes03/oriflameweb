@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./Catalogs.css";
 import catalogsData from "./data/catalogs.json";
 
@@ -94,4 +94,4 @@ const Catalogs = () => {
   );
 };
 
-export default Catalogs;
+export default memo(Catalogs);

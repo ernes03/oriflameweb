@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import './NavBar.css';
 import data from './data/navbar.json';
 
@@ -8,17 +8,30 @@ const Navbar = () => {
 
   useEffect(() => {
     let timeoutId;
+    let lastScrollTop = 0;
     
     const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      
+      // Solo actualizar si hay un cambio significativo
+      if (Math.abs(scrollTop - lastScrollTop) < 5) return;
+      
       clearTimeout(timeoutId);
       
       timeoutId = setTimeout(() => {
-        const scrollTop = window.scrollY;
-        setIsScrolled(scrollTop > 20);
-      }, 50);
+        const shouldBeScrolled = scrollTop > 20;
+        setIsScrolled(prevScrolled => {
+          // Solo actualizar si realmente cambió el estado
+          if (prevScrolled !== shouldBeScrolled) {
+            lastScrollTop = scrollTop;
+            return shouldBeScrolled;
+          }
+          return prevScrolled;
+        });
+      }, 100); // Aumentado a 100ms para menos actualizaciones
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timeoutId);
@@ -64,6 +77,6 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
 
 

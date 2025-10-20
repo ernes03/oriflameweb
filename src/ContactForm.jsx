@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import emailjs from '@emailjs/browser';
 import './ContactForm.css';
 import data from './data/contactForm.json';
@@ -79,4 +79,4 @@ function ContactForm() {
   );
 }
 
-export default ContactForm;
+export default memo(ContactForm);
