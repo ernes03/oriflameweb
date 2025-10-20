@@ -1,0 +1,10 @@
+# Fuerza que no se haga cache de los iconos por un tiempo
+<filesMatch "\.(ico|png|jpg|jpeg|gif|svg)$">
+    ExpiresActive On
+    ExpiresDefault "access plus 1 day"
+</filesMatch>
+
+# Para favicon específicamente
+<files favicon.ico>
+    Header set Cache-Control "public, max-age=86400"
+</files>
