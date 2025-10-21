@@ -1,31 +1,57 @@
-import React, { useState, useEffect, useRef, memo } from 'react';
+import React, { useState, useEffect, useRef, memo, useMemo } from 'react';
 import './ImageSlider.css';
 import sliderData from './data/imageSlider.json';
 
-const ImageSlider = () => {
+const ImageSlider = memo(() => {
   const { slider } = sliderData;
   
-  // Filtrar solo las imágenes activas
-  const activeImages = slider.images.filter(image => image.active);
+  // Filtrar solo las imágenes activas - memoizado para evitar recálculos
+  const activeImages = useMemo(() => 
+    slider.images.filter(image => image.active), 
+    [slider.images]
+  );
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTouch, setIsTouch] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const sliderRef = useRef(null);
 
-  // Auto-play functionality
+  // Intersection Observer para detectar visibilidad
   useEffect(() => {
-    if (slider.autoPlay && activeImages.length > 0 && !isTouch) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => 
-          prevIndex === activeImages.length - 1 ? 0 : prevIndex + 1
-        );
-      }, slider.autoPlayInterval);
+    const sliderElement = sliderRef.current;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
 
-      return () => clearInterval(interval);
+    if (sliderElement) {
+      observer.observe(sliderElement);
     }
-  }, [slider.autoPlay, slider.autoPlayInterval, activeImages.length, isTouch]);
+
+    return () => {
+      if (sliderElement) {
+        observer.unobserve(sliderElement);
+      }
+    };
+  }, []);
+
+  // Auto-play functionality - optimizado y solo cuando es visible
+  useEffect(() => {
+    if (!slider.autoPlay || activeImages.length <= 1 || isTouch || !isVisible) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === activeImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, slider.autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [slider.autoPlay, slider.autoPlayInterval, activeImages.length, isTouch, isVisible]);
 
   // Touch/Swipe handlers
   const handleTouchStart = (e) => {
@@ -194,6 +220,8 @@ const ImageSlider = () => {
       )}
     </div>
   );
-};
+});
 
-export default memo(ImageSlider);
+ImageSlider.displayName = 'ImageSlider';
+
+export default ImageSlider;
