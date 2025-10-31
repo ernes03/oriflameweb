@@ -1,6 +1,6 @@
 {
   "slider": {
-    "title": "Descuentos del Mes",
+    "title": "Ofertas Noviembre 2025",
     "autoPlay": true,
     "autoPlayInterval": 5000,
     "showDots": true,
@@ -8,86 +8,149 @@
     "images": [
   {
     "id": 1,
-    "url": "/2025-10CR_page-0001.jpg",
-    "title": "OH! Sweet",
-    "description": "55% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0001.jpg",
+    "title": "Diamond Cellular",
+    "description": "70% de descuento",
     "active": true
   },
   {
     "id": 2,
-    "url": "/2025-10CR_page-0002.jpg",
-    "title": "Duologi",
-    "description": "45% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0002.jpg",
+    "title": "Eclat Femme",
+    "description": "55% de descuento",
     "active": true
   },
   {
     "id": 3,
-    "url": "/2025-10CR_page-0003.jpg",
-    "title": "Reloj Sun Kissed",
-    "description": "50% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0003.jpg",
+    "title": "Eclat Homme",
+    "description": "55% de descuento",
     "active": true
   },
   {
     "id": 4,
-    "url": "/2025-10CR_page-0004.jpg",
-    "title": "Novage+",
-    "description": "Restore",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0004.jpg",
+    "title": "Giordani Gold",
+    "description": "45% de descuento",
     "active": true
   },
   {
     "id": 5,
-    "url": "/2025-10CR_page-0005.jpg",
-    "title": "Novage+",
-    "description": "50% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0005.jpg",
+    "title": "Giordani Gold",
+    "description": "50% de descuento",
     "active": true
   },
   {
     "id": 6,
-    "url": "/2025-10CR_page-0006.jpg",
-    "title": "Novage+",
-    "description": "50% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0006.jpg",
+    "title": "Giordani Gold",
+    "description": "50% de descuento",
     "active": true
   },
   {
     "id": 7,
-    "url": "/2025-10CR_page-0007.jpg",
-    "title": "Royal Velvet",
-    "description": "45% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0007.jpg",
+    "title": "Novage+",
+    "description": "40% de descuento",
     "active": true
   },
   {
     "id": 8,
-    "url": "/2025-10CR_page-0008.jpg",
-    "title": "Paleta multiusos - Labial Iconic Satin",
-    "description": "40% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0008.jpg",
+    "title": "Novage+",
+    "description": "40% de descuento",
     "active": true
   },
   {
     "id": 9,
-    "url": "/2025-10CR_page-0009.jpg",
-    "title": "Brillo Labial - Oncolor",
-    "description": "En Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0009.jpg",
+    "title": "Soul",
+    "description": "50% de descuento",
     "active": true
   },
   {
     "id": 10,
-    "url": "/2025-10CR_page-0010.jpg",
-    "title": "Oncolor - OH! Sweet",
-    "description": "En Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0010.jpg",
+    "title": "Essenza",
+    "description": "50% de descuento",
     "active": true
   },
   {
     "id": 11,
-    "url": "/2025-10CR_page-0011.jpg",
-    "title": "Greater para Ella",
-    "description": "50% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0011.jpg",
+    "title": "The One BB",
+    "description": "45% de descuento",
     "active": true
   },
   {
     "id": 12,
-    "url": "/2025-10CR_page-0012.jpg",
-    "title": "Elvie - Floral",
-    "description": "50% de Descuento",
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0012.jpg",
+    "title": "The One",
+    "description": "35% de descuento",
+    "active": true
+  },
+  {
+    "id": 13,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0013.jpg",
+    "title": "The One",
+    "description": "Promoción",
+    "active": true
+  },
+  {
+    "id": 14,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0014.jpg",
+    "title": "Crema Universal",
+    "description": "75% de descuento",
+    "active": true
+  },
+  {
+    "id": 15,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0015.jpg",
+    "title": "Activelle",
+    "description": "50% de descuento",
+    "active": true
+  },
+  {
+    "id": 16,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0016.jpg",
+    "title": "Age Revive",
+    "description": "50% de descuento",
+    "active": true
+  },
+  {
+    "id": 17,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0017.jpg",
+    "title": "Labial",
+    "description": "60% de descuento",
+    "active": true
+  },
+  {
+    "id": 18,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0018.jpg",
+    "title": "Labial",
+    "description": "60% de descuento",
+    "active": true
+  },
+  {
+    "id": 19,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0019.jpg",
+    "title": "Opt",
+    "description": "50% de descuento",
+    "active": true
+  },
+  {
+    "id": 20,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0020.jpg",
+    "title": "On Color Nail Polish",
+    "description": "60% de descuento",
+    "active": true
+  },
+  {
+    "id": 21,
+    "url": "/Noviembre2025/paginas_pages-to-jpg-0021.jpg",
+    "title": "On Color Nail Polish",
+    "description": "60% de descuento",
     "active": true
   }
 ]
